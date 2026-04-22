@@ -1,0 +1,2616 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap"
+          rel="stylesheet">
+    <title>최치원 포트폴리오</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --bg: #0d0f1a;
+            --s1: #131728;
+            --s2: #191e32;
+            --s3: #1f2540;
+            --acc: #6272ea;
+            --acc2: #a78bfa;
+            --grn: #50c896;
+            --amber: #f0a050;
+            --txt: #cdd6f4;
+            --muted: #7e89b0;
+            --bdr: #252b4a;
+            --tag: #1c2140;
+            --radius: 10px;
+            --font: 'Noto Sans KR', sans-serif;
+            --mono: 'JetBrains Mono', monospace
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--txt);
+            font-family: var(--font);
+            font-size: 15px;
+            line-height: 1.75
+        }
+
+        a {
+            color: var(--acc);
+            text-decoration: none
+        }
+
+        a:hover {
+            text-decoration: underline
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(13, 15, 26, .92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--bdr);
+            z-index: 100;
+            padding: 0 40px
+        }
+
+        .nav-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px
+        }
+
+        .nav-brand {
+            font-family: var(--mono);
+            font-size: 14px;
+            color: var(--acc);
+            font-weight: 500
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            color: var(--muted);
+            transition: .2s
+        }
+
+        .nav-links a:hover {
+            color: var(--txt);
+            text-decoration: none
+        }
+
+        /* ── LAYOUT ── */
+        .wrap {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 80px 32px 60px
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            padding-top: 56px
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns:1fr 340px;
+            gap: 60px;
+            align-items: center;
+            width: 100%
+        }
+
+        .hero-tag {
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--acc);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .hero-tag::before {
+            content: '';
+            width: 32px;
+            height: 2px;
+            background: var(--acc)
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            letter-spacing: -1px
+        }
+
+        .hero h1 span {
+            color: var(--acc)
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            color: var(--muted);
+            margin-bottom: 28px;
+            line-height: 1.7
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 11px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: .2s
+        }
+
+        .btn-primary {
+            background: var(--acc);
+            color: #fff
+        }
+
+        .btn-primary:hover {
+            background: #7282f0;
+            text-decoration: none
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--txt);
+            border: 1px solid var(--bdr)
+        }
+
+        .btn-outline:hover {
+            border-color: var(--acc);
+            color: var(--acc);
+            text-decoration: none
+        }
+
+        .hero-card {
+            background: var(--s1);
+            border: 1px solid var(--bdr);
+            border-radius: 16px;
+            padding: 28px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 140px;
+            height: 140px;
+            background: rgba(98, 114, 234, .12);
+            border-radius: 50%
+        }
+
+        .hero-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2.5px solid var(--acc);
+            background: var(--s3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            font-family: var(--mono);
+            color: var(--acc);
+            margin-bottom: 16px;
+            overflow: hidden
+        }
+
+        .hero-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top
+        }
+
+        .hero-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px
+        }
+
+        .hero-role {
+            font-size: 13px;
+            color: var(--acc);
+            font-family: var(--mono);
+            margin-bottom: 20px
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns:1fr 1fr;
+            gap: 10px
+        }
+
+        .hstat {
+            background: var(--s3);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center
+        }
+
+        .hstat .n {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--acc);
+            font-family: var(--mono)
+        }
+
+        .hstat .l {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 2px
+        }
+
+        .hero-contacts {
+            margin-top: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px
+        }
+
+        .hero-contacts a {
+            font-size: 12px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .hero-contacts a:hover {
+            color: var(--acc)
+        }
+
+        /* ── SECTION ── */
+        .section {
+            padding: 80px 0;
+            border-top: 1px solid var(--bdr)
+        }
+
+        .sec-header {
+            margin-bottom: 40px
+        }
+
+        .sec-label {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--acc);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .sec-label::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--acc)
+        }
+
+        .sec-title {
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 10px
+        }
+
+        .sec-desc {
+            font-size: 15px;
+            color: var(--muted);
+            max-width: 560px;
+            line-height: 1.8
+        }
+
+        /* ── PROJECT CARD ── */
+        .proj-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 60px
+        }
+
+        .proj-card {
+            background: var(--s1);
+            border: 1px solid var(--bdr);
+            border-radius: 16px;
+            overflow: hidden
+        }
+
+        .proj-card-header {
+            padding: 28px 32px 24px;
+            border-bottom: 1px solid var(--bdr);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px
+        }
+
+        .proj-card-header-left {
+            flex: 1
+        }
+
+        .proj-badge-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap
+        }
+
+        .pbadge {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px
+        }
+
+        .pbadge-client {
+            background: rgba(98, 114, 234, .18);
+            color: var(--acc);
+            border: 1px solid rgba(98, 114, 234, .35)
+        }
+
+        .pbadge-solo {
+            background: rgba(80, 200, 150, .13);
+            color: var(--grn);
+            border: 1px solid rgba(80, 200, 150, .28)
+        }
+
+        .pbadge-team {
+            background: rgba(167, 139, 250, .15);
+            color: var(--acc2);
+            border: 1px solid rgba(167, 139, 250, .3)
+        }
+
+        .proj-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px
+        }
+
+        .proj-period {
+            font-size: 12px;
+            color: var(--muted);
+            font-family: var(--mono)
+        }
+
+        .proj-period-badge {
+            font-size: 11px;
+            color: var(--muted);
+            background: var(--s3);
+            padding: 5px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            font-family: var(--mono)
+        }
+
+        .proj-body {
+            padding: 28px 32px
+        }
+
+        .proj-overview {
+            font-size: 14.5px;
+            color: var(--muted);
+            line-height: 1.85;
+            margin-bottom: 28px;
+            padding: 18px 20px;
+            background: var(--s3);
+            border-radius: 10px;
+            border-left: 3px solid var(--acc)
+        }
+
+        /* ── TECH STACK ── */
+        .stack-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 28px
+        }
+
+        .stag {
+            font-size: 12px;
+            padding: 4px 11px;
+            border-radius: 20px;
+            border: 1px solid var(--bdr);
+            background: var(--tag);
+            color: var(--txt)
+        }
+
+        .stag.p {
+            background: rgba(98, 114, 234, .18);
+            border-color: rgba(98, 114, 234, .4);
+            color: var(--acc)
+        }
+
+        /* ── PROBLEM/SOLUTION/IMPACT ── */
+        .psi-grid {
+            display: grid;
+            grid-template-columns:1fr 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 28px
+        }
+
+        .psi-card {
+            border-radius: 10px;
+            padding: 18px;
+            border: 1px solid var(--bdr)
+        }
+
+        .psi-card.problem {
+            background: rgba(224, 75, 74, .07);
+            border-color: rgba(224, 75, 74, .2)
+        }
+
+        .psi-card.solution {
+            background: rgba(98, 114, 234, .08);
+            border-color: rgba(98, 114, 234, .2)
+        }
+
+        .psi-card.impact {
+            background: rgba(80, 200, 150, .08);
+            border-color: rgba(80, 200, 150, .2)
+        }
+
+        .psi-icon {
+            font-size: 22px;
+            margin-bottom: 10px
+        }
+
+        .psi-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px
+        }
+
+        .psi-card.problem .psi-label {
+            color: #e24b4a
+        }
+
+        .psi-card.solution .psi-label {
+            color: var(--acc)
+        }
+
+        .psi-card.impact .psi-label {
+            color: var(--grn)
+        }
+
+        .psi-text {
+            font-size: 13px;
+            color: var(--txt);
+            line-height: 1.7
+        }
+
+        /* ── CONTRIBUTIONS ── */
+        .contrib-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--acc2);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 14px
+        }
+
+        .contrib-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px
+        }
+
+        .contrib-item {
+            display: flex;
+            gap: 14px;
+            padding: 14px 16px;
+            background: var(--s3);
+            border-radius: 10px;
+            border: 1px solid var(--bdr)
+        }
+
+        .contrib-num {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--acc);
+            font-family: var(--mono);
+            min-width: 24px;
+            padding-top: 2px
+        }
+
+        .contrib-content {
+        }
+
+        .contrib-content strong {
+            display: block;
+            font-size: 13.5px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--txt)
+        }
+
+        .contrib-content p {
+            font-size: 12.5px;
+            color: var(--muted);
+            line-height: 1.7
+        }
+
+        /* ── IMPACT BADGES ── */
+        .impact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 6px
+        }
+
+        .imp {
+            background: rgba(80, 200, 150, .1);
+            border: 1px solid rgba(80, 200, 150, .22);
+            color: var(--grn);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12.5px;
+            font-weight: 600
+        }
+
+        .imp.acc {
+            background: rgba(98, 114, 234, .12);
+            border-color: rgba(98, 114, 234, .3);
+            color: var(--acc)
+        }
+
+        .imp.amber {
+            background: rgba(240, 160, 80, .1);
+            border-color: rgba(240, 160, 80, .25);
+            color: var(--amber)
+        }
+
+        /* ── SKILLS SECTION ── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns:repeat(2, 1fr);
+            gap: 16px
+        }
+
+        .skill-cat {
+            background: var(--s1);
+            border: 1px solid var(--bdr);
+            border-radius: 12px;
+            padding: 20px 22px
+        }
+
+        .skill-cat-title {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 12px
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px
+        }
+
+        .stg {
+            font-size: 13px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--bdr);
+            background: var(--tag);
+            color: var(--txt)
+        }
+
+        .stg.main {
+            background: rgba(98, 114, 234, .18);
+            border-color: rgba(98, 114, 234, .4);
+            color: var(--acc)
+        }
+
+        /* ── DIVIDER ── */
+        .proj-divider {
+            height: 1px;
+            background: var(--bdr);
+            margin: 28px 0
+        }
+
+        /* ── TIMELINE ── */
+        .timeline {
+            position: relative;
+            padding-left: 32px
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--bdr)
+        }
+
+        .tl-item {
+            position: relative;
+            margin-bottom: 36px
+        }
+
+        .tl-item:last-child {
+            margin-bottom: 0
+        }
+
+        .tl-dot {
+            position: absolute;
+            left: -29px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--acc);
+            border: 2px solid var(--bg);
+            box-shadow: 0 0 0 2px var(--acc)
+        }
+
+        .tl-dot.current {
+            background: var(--grn);
+            box-shadow: 0 0 0 2px var(--grn);
+        }
+
+        .tl-period {
+            font-size: 11px;
+            color: var(--muted);
+            font-family: var(--mono);
+            margin-bottom: 6px
+        }
+
+        .tl-company {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 2px
+        }
+
+        .tl-role {
+            font-size: 13px;
+            color: var(--acc);
+            font-family: var(--mono);
+            margin-bottom: 10px
+        }
+
+        .tl-desc {
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.75;
+            margin-bottom: 12px
+        }
+
+        .tl-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px
+        }
+
+        .tl-tag {
+            font-size: 11.5px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--bdr);
+            background: var(--tag);
+            color: var(--txt)
+        }
+
+        .tl-tag.g {
+            background: rgba(80, 200, 150, .1);
+            border-color: rgba(80, 200, 150, .25);
+            color: var(--grn)
+        }
+
+        /* ── BLOG ── */
+        .blog-grid {
+            display: grid;
+            grid-template-columns:repeat(3, 1fr);
+            gap: 16px
+        }
+
+        .blog-card {
+            background: var(--s1);
+            border: 1px solid var(--bdr);
+            border-radius: 12px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: .2s;
+            text-decoration: none;
+            color: inherit
+        }
+
+        .blog-card:hover {
+            border-color: var(--acc);
+            transform: translateY(-2px);
+            text-decoration: none
+        }
+
+        .blog-cat {
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--acc);
+            font-family: var(--mono)
+        }
+
+        .blog-title {
+            font-size: 14.5px;
+            font-weight: 600;
+            line-height: 1.55;
+            color: var(--txt)
+        }
+
+        .blog-desc {
+            font-size: 12.5px;
+            color: var(--muted);
+            line-height: 1.7;
+            flex: 1
+        }
+
+        .blog-meta {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 4px
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--bdr);
+            padding: 40px 0;
+            text-align: center
+        }
+
+        .footer-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 32px
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .footer-links a:hover {
+            color: var(--acc)
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--muted);
+            opacity: .6
+        }
+
+        .ts-block {
+            background: #1a1d2e;
+            border: 1px solid #2a2f4a;
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 16px
+        }
+
+        .ts-block .ts-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            padding: 3px 8px;
+            border-radius: 20px;
+            display: inline-block
+        }
+
+        .ts-block .ts-label.prob {
+            background: rgba(224, 75, 74, .15);
+            color: #e24b4a
+        }
+
+        .ts-block .ts-label.sol {
+            background: rgba(98, 114, 234, .15);
+            color: #6272ea
+        }
+
+        .ts-block .ts-label.res {
+            background: rgba(80, 200, 150, .15);
+            color: #50c896
+        }
+
+        .ts-block .ts-content {
+            font-size: 12.5px;
+            color: #9aa5ce;
+            line-height: 1.8;
+            margin-bottom: 10px
+        }
+
+        .ts-block .ts-content:last-child {
+            margin-bottom: 0
+        }
+
+        pre.code {
+            background: #0d0f1a;
+            border: 1px solid #252b4a;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 10px 0 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            color: #cdd6f4;
+            overflow-x: auto;
+            line-height: 1.7;
+            white-space: pre
+        }
+
+        pre.code .cm {
+            color: #636c8a
+        }
+
+        pre.code .kw {
+            color: #c792ea
+        }
+
+        pre.code .tp {
+            color: #82aaff
+        }
+
+        pre.code .fn {
+            color: #82aaff
+        }
+
+        pre.code .st {
+            color: #c3e88d
+        }
+
+        pre.code .nm {
+            color: #ffcb6b
+        }
+
+        pre.code .an {
+            color: #f78c6c
+        }
+
+        .ts-num {
+            font-size: 11px;
+            font-weight: 700;
+            color: #6272ea;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 8px
+        }
+
+        .ts-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #cdd6f4;
+            margin-bottom: 14px
+        }
+
+        .ts-sep {
+            height: 1px;
+            background: #252b4a;
+            margin: 20px 0
+        }
+
+        @media (max-width: 700px) {
+            .hero-inner {
+                grid-template-columns:1fr
+            }
+
+            .hero-card {
+                display: none
+            }
+
+            .psi-grid {
+                grid-template-columns:1fr
+            }
+
+            .skills-grid {
+                grid-template-columns:1fr
+            }
+
+            .proj-card-header {
+                flex-direction: column
+            }
+        }
+
+        @media print {
+            /* 가로 스크롤 제거 — 코드 줄바꿈으로 전환 */
+            pre.code {
+                overflow-x: visible;
+                white-space: pre-wrap;
+                word-break: break-all;
+            }
+
+            /* 코드 블록·트러블슈팅 블록 중간 잘림 방지 */
+            pre.code,
+            .ts-block,
+            .contrib-item,
+            .psi-card,
+            .psi-grid,
+            .proj-card-header {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* 섹션 제목이 혼자 페이지 끝에 남지 않도록 */
+            .ts-num,
+            .ts-title,
+            .contrib-title,
+            .sub-ttl {
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<!-- HERO -->
+<div class="wrap">
+    <section class="hero" id="about">
+        <div class="hero-inner">
+            <div>
+                <div class="hero-tag">Backend Developer</div>
+                <h1>엔터프라이즈를<br>바꾸는 <span>코드</span></h1>
+                <p class="hero-sub">6년간 B2B 환경에서 제로에서 프로덕션까지.<br>측정 가능한 가치를 만드는 백엔드 개발자 최치원입니다.</p>
+                <div class="hero-btns">
+                    <a class="btn btn-primary" href="https://github.com/chyoni" target="_blank">GitHub ↗</a>
+                    <a class="btn btn-outline" href="https://velog.io/@chyonees" target="_blank">Tech Blog ↗</a>
+                    <a class="btn btn-outline" href="mailto:chiwon99881@gmail.com">Contact</a>
+                </div>
+            </div>
+            <div>
+                <div class="hero-card">
+                    <div class="hero-avatar" id="p-avatar">
+                        <img src="./최치원.jpg"
+                             alt="최치원"
+                             style="width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:50%;display:block">
+                    </div>
+                    <div class="hero-name">최치원</div>
+                    <div class="hero-role">Backend Developer · 6Y</div>
+                    <div class="hero-stats">
+                        <div class="hstat">
+                            <div class="n">8+</div>
+                            <div class="l">납품 프로젝트</div>
+                        </div>
+                        <div class="hstat">
+                            <div class="n">$9,925+</div>
+                            <div class="l">연간 비용 절감 기여 (USD)</div>
+                        </div>
+                        <div class="hstat">
+                            <div class="n">400+</div>
+                            <div class="l">블로그 포스팅</div>
+                        </div>
+                        <div class="hstat">
+                            <div class="n">ISTQB</div>
+                            <div class="l">자격증 보유</div>
+                        </div>
+                    </div>
+                    <div class="hero-contacts">
+                        <a href="mailto:chiwon99881@gmail.com">✉ chiwon99881@gmail.com</a>
+                        <a href="https://github.com/chyoni" target="_blank">⌥ github.com/chyoni</a>
+                        <a href="https://velog.io/@chyonees" target="_blank">✍ velog.io/@chyonees</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+        <div class="sec-header">
+            <div class="sec-label">Projects</div>
+            <h2 class="sec-title">주요 프로젝트</h2>
+            <p class="sec-desc">실제 고객사에 납품·운영 중인 솔루션들입니다. 문제 정의부터 설계·구현·운영까지 풀사이클로 참여했습니다.</p>
+        </div>
+
+        <div class="proj-grid">
+
+            <!-- P1: JIRA 티켓 싱크 -->
+            <div class="proj-card">
+                <div class="proj-card-header">
+                    <div class="proj-card-header-left">
+                        <div class="proj-badge-row">
+                            <span class="pbadge pbadge-client">납품 · AWS 운영</span>
+                            <span class="pbadge pbadge-team">2인 팀 · 기여도 90% · 첫 개발 리드</span>
+                        </div>
+                        <div class="proj-title">JIRA 티켓 싱크 플러그인</div>
+                        <div class="proj-period">티벨 &nbsp;|&nbsp; 2023.01 – 2023.11</div>
+                    </div>
+                    <div class="proj-period-badge">Spring Boot · Docker · AWS</div>
+                </div>
+
+                <div class="proj-body">
+                    <div class="proj-overview">
+                        T사의 JIRA와 고객사 JIRA/Codebeamer 간 티켓을 자동으로 동기화하는 솔루션. 특정 인원이 고객사 PMS에 직접 접속해 티켓을 수작업으로 복사해오는 불편함과
+                        시간 낭비를 해결하기 위해 개발했습니다.<br><br>
+                        <strong style="color:#cdd6f4">생애 첫 개발 리드 프로젝트</strong>로, 이기종 시스템 연동 특유의 복잡한 동시성·정합성·성능 문제들을 설계
+                        단계에서부터 직접 식별하고 해결하며 엔지니어링 역량을 크게 성장시킨 프로젝트입니다.
+                    </div>
+
+                    <div class="stack-row">
+                        <span class="stag p">Java</span>
+                        <span class="stag p">Spring Boot</span>
+                        <span class="stag p">Spring Data JPA</span>
+                        <span class="stag p">Querydsl</span>
+                        <span class="stag p">MySQL</span>
+                        <span class="stag">Docker</span>
+                        <span class="stag">Docker Compose</span>
+                        <span class="stag">AWS</span>
+                        <span class="stag">Thymeleaf</span>
+                        <span class="stag">Slack API</span>
+                    </div>
+
+                    <div class="psi-grid">
+                        <div class="psi-card problem">
+                            <div class="psi-label">Problem</div>
+                            <div class="psi-text">담당자가 매일 고객사 PMS에 접속해 티켓을 수작업으로 복사. 시간 낭비, 최신화 오류, 휴먼 에러 반복 발생</div>
+                        </div>
+                        <div class="psi-card solution">
+                            <div class="psi-label">Solution</div>
+                            <div class="psi-text">스케줄러 기반 일일 자동 동기화 + 수동 즉시 동기화. 이기종 연동에서 발생하는 10가지 문제를 구조적으로 식별하고 해결
+                            </div>
+                        </div>
+                        <div class="psi-card impact">
+                            <div class="psi-label">Impact</div>
+                            <div class="psi-text">같은 기능을 제공하는 시중 플러그인 대비 연간 $2,625 비용 절감, 수작업 제로화, T사 높은 만족도로 후속 계약 체결, AWS 마이그레이션 후 1년간 무중단 운영
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contrib-title">트러블슈팅 — 이기종 연동 10가지 문제</div>
+
+                    <!-- TS 01 -->
+                    <div style="margin-bottom:28px">
+                        <div class="ts-num">TROUBLE 01</div>
+                        <div class="ts-title">이기종 시스템 간 필드 매핑</div>
+
+                        <div class="ts-block">
+                            <div class="ts-label prob">문제</div>
+                            <div class="ts-content">JIRA와 Codebeamer는 설계 철학 자체가 달랐습니다. 단순히 필드명이 다른 게 아니라
+                                <strong style="color:#cdd6f4">개념 자체가 다른 경우</strong>가 존재했습니다. JIRA의 Epic은 Codebeamer에서
+                                Feature에 해당할 수도 있고 Release에 해당할 수도 있는데, 이는 고객사마다 달랐습니다. 하드코딩으로 매핑 테이블을 박아두면 고객사가 바뀔 때마다
+                                코드를 수정해야 했습니다.
+                            </div>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label sol">해결방법</div>
+                            <div class="ts-content">커넥션별 매핑 설정을 DB에 저장하는 구조를 설계했습니다. <code
+                                    style="background:#252b4a;padding:1px 5px;border-radius:3px;font-family:monospace">transform_type</code>을
+                                세 가지로 나눠 고객사 담당자가 GUI로 직접 설정할 수 있게 했습니다.
+                            </div>
+                            <pre class="code"><span class="cm">-- ConnectionFieldMapping 테이블</span>
+connection_id   <span class="cm">-- 어느 커넥션인지</span>
+source_field    <span class="cm">-- 소스 시스템 필드명</span>
+target_field    <span class="cm">-- 타겟 시스템 필드명</span>
+transform_type  <span class="cm">-- DIRECT / VALUE_MAP / IGNORE</span>
+value_mapping   <span class="cm">-- JSON: {"Highest": "1", "High": "2"}</span>
+
+<span class="cm">-- DIRECT  : 값 그대로 복사</span>
+<span class="cm">-- VALUE_MAP: 값 변환 필요 (예: JIRA "Highest" → Codebeamer "1")</span>
+<span class="cm">-- IGNORE  : 동기화 제외</span></pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label res">결과</div>
+                            <div class="ts-content">코드 수정 없이 커넥션별로 완전히 다른 매핑 규칙을 적용할 수 있게 됐습니다. T사 외에 다른 고객사에도 동일한 시스템을
+                                재사용할 수 있는 멀티테넌트 구조가 됐습니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ts-sep"></div>
+
+                    <!-- TS 02 -->
+                    <div style="margin-bottom:28px">
+                        <div class="ts-num">TROUBLE 02</div>
+                        <div class="ts-title">동시 수동 동기화 요청 처리</div>
+
+                        <div class="ts-block">
+                            <div class="ts-label prob">문제</div>
+                            <div class="ts-content">수동 동기화는 여러 사용자가 동시에 같은 티켓에 대해 동기화 버튼을 누를 수 있었습니다. 사용자 A와 B가 동시에 티켓 #123을 수동 동기화하면(심지어 티켓을 각각 수정하고 난 후), A의 요청과 B의 요청이 각각 소스를 읽고 타겟에 쓰기 시작하면서 <strong style="color:#cdd6f4">마지막에
+                                쓴 요청이 이기거나, 최악의 경우 데이터가 섞이는</strong> 현상이 발생했습니다. 또한 같은 커넥션에 대해 동시에 여러 동기화가 돌면 외부
+                                API의 Rate Limit에 걸렸습니다.
+                            </div>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label sol">해결방법</div>
+                            <div class="ts-content">두 가지 레벨에서 제어했습니다.<br><br>
+                                <strong style="color:#cdd6f4">① 티켓 레벨 락 — 재시도 + 대기</strong><br>
+                                SyncLock 테이블에 connection_id + ticket_id를 유니크 키로 두고, 동기화 시작 시 INSERT, 완료 시 DELETE하는 방식입니다. 락 습득 실패 시 바로 에러를 던지지 않고 일정 시간 대기 후 재시도합니다. 단, <code style="background:#252b4a;padding:1px 5px;border-radius:3px;font-family:monospace">finally</code>에서 무조건 <code style="background:#252b4a;padding:1px 5px;border-radius:3px;font-family:monospace">releaseLock()</code> 을 호출하면 락 습득에 실패한 경우에도 남의 락을 삭제 시도하는 문제가 생기므로, <code style="background:#252b4a;padding:1px 5px;border-radius:3px;font-family:monospace">acquired</code> 플래그로 "내가 잡은 경우에만 해제"를 보장했습니다.</div>
+                            <pre class="code"><span class="kw">public void</span> <span class="fn">syncWithRetry</span>(Long connectionId, <span class="tp">String</span> ticketId) {
+    <span class="kw">int</span> maxAttempts = <span class="nm">5</span>;
+
+    <span class="kw">for</span> (<span class="kw">int</span> attempt = <span class="nm">1</span>; attempt &lt;= maxAttempts; attempt++) {
+        <span class="kw">boolean</span> acquired = <span class="kw">false</span>;
+        <span class="kw">try</span> {
+            syncLockRepository.acquireLock(connectionId, ticketId);
+            acquired = <span class="kw">true</span>;
+
+            doSync(connectionId, ticketId);
+            <span class="kw">return</span>;
+
+        } <span class="kw">catch</span> (<span class="tp">DuplicateKeyException</span> e) {
+            <span class="kw">if</span> (attempt == maxAttempts) {
+                <span class="cm">// 끝까지 락을 못 잡으면 그때 에러</span>
+                <span class="kw">throw new</span> <span class="tp">SyncAlreadyInProgressException</span>(ticketId);
+            }
+            <span class="cm">// 500ms → 1s → 1.5s → 2s 점진적 대기 후 재시도</span>
+            Thread.sleep(<span class="nm">500L</span> * attempt);
+
+        } <span class="kw">finally</span> {
+            <span class="cm">// 내가 실제로 락을 잡은 경우에만 해제</span>
+            <span class="kw">if</span> (acquired) {
+                syncLockRepository.releaseLock(connectionId, ticketId);
+            }
+        }
+    }
+}</pre>
+                            <div class="ts-content" style="margin-top:12px"><strong style="color:#cdd6f4">② 커넥션 레벨 스로틀링</strong><br>
+                                커넥션별로 동시 실행 가능한 최대 스레드 수를 제한하는 Semaphore를 두었습니다.</div>
+                            <pre class="code"><span class="kw">private final</span> Map&lt;Long, Semaphore&gt; connectionSemaphores = <span class="kw">new</span> ConcurrentHashMap&lt;&gt;();
+
+<span class="kw">public void</span> <span class="fn">syncWithThrottle</span>(Long connectionId, Runnable syncTask) {
+    Semaphore semaphore = connectionSemaphores
+        .computeIfAbsent(connectionId, id -&gt; <span class="kw">new</span> Semaphore(<span class="nm">3</span>)); <span class="cm">// 최대 3개 동시</span>
+    semaphore.acquire();
+    <span class="kw">try</span> {
+        syncTask.run();
+    } <span class="kw">finally</span> {
+        semaphore.release();
+    }
+}</pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label res">결과</div>
+                            <div class="ts-content">커넥션 별로 세마포어를 설정해 한 커넥션 당 최대 동시 3개 요청을 허용하고, 그 요청 중에서 같은 티켓이 중복 동기화되는 현상이 제거됐습니다. 외부 API Rate Limit 초과로 인한 장애도 방지할 수 있었습니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ts-sep"></div>
+
+                    <!-- TS 03 -->
+                    <div style="margin-bottom:28px">
+                        <div class="ts-num">TROUBLE 03</div>
+                        <div class="ts-title">불필요한 재동기화 방지 + 신규 티켓 중복 생성 방지</div>
+
+                        <div class="ts-block">
+                            <div class="ts-label prob">문제</div>
+                            <div class="ts-content">
+                                <strong style="color:#cdd6f4">[업데이트 케이스]</strong><br>
+                                기준점이 없으면 스케줄러 실행마다 등록된 티켓 전체를 동기화 시도합니다. 실제로 오늘 변경된 티켓이 3개뿐인데 10만 번 API를 호출하게 되어 Rate Limit 초과와 성능 저하가 발생했습니다.
+                            </div>
+                            <div class="ts-content" style="margin-top:10px">
+                                <strong style="color:#cdd6f4">[신규 생성 케이스]</strong><br>
+                                동기화 흐름은 ① 소스 읽기 → ② 필드 매핑 → ③ 타겟에 티켓 생성(외부 API) → ④ DB에 매핑 기록 순서입니다. ③이 성공하고 ④가 실패하면, 다음 스케줄에서 매핑 정보가 없어 소스 티켓을 신규로 판단하고 타겟에 티켓을 또 생성합니다. ③이 외부 API 호출이기 때문에 트랜잭션으로 묶는 것은 불가능합니다.
+                            </div>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label sol">해결방법</div>
+                            <div class="ts-content">
+                                <strong style="color:#cdd6f4">[업데이트 케이스] SyncHistory — 동기화 필요 여부 판단 기준점</strong><br>
+                                SyncHistory의 역할은 정합성 보장이나 멱등성이 아닙니다. <strong style="color:#cdd6f4">"이 티켓을 지금 동기화할 필요가 있는가?"를 판단하는 필터</strong>입니다. source_updated_at > last_synced_at 인 티켓만 동기화 대상으로 추려냅니다. ③ 성공 + ④ 실패로 재동기화가 발생해도, 업데이트는 덮어쓰기 구조라 원래부터 멱등하기 때문에 데이터 이상은 없습니다.
+                            </div>
+                            <pre class="code">connection_id     -- 어느 커넥션
+source_ticket_id  -- 소스 티켓 ID
+last_synced_at    -- 마지막 성공 시각
+source_updated_at -- 소스 티켓의 마지막 수정 시각
+sync_status       -- SUCCESS / FAILED / IN_PROGRESS
+
+-- 아래 조건을 만족하는 티켓만 동기화 대상으로 추출
+-- source_updated_at > last_synced_at</pre>
+
+                            <div class="ts-content" style="margin-top:14px">
+                                <strong style="color:#cdd6f4">[신규 생성 케이스] TicketMapping 테이블 + 타겟 롤백</strong><br>
+                                소스-타겟 티켓 ID 매핑을 별도 테이블에 저장합니다. 동기화 전 매핑이 존재하면 생성을 건너뛰고 업데이트만 수행합니다. 타겟 생성 후 DB 저장이 실패하면 타겟 티켓을 직접 삭제해 롤백합니다.
+                            </div>
+                            <pre class="code"><span class="kw">public void</span> <span class="fn">syncNewTicket</span>(<span class="tp">String</span> sourceTicketId) {
+
+    <span class="cm">// 이미 생성된 적 있으면 업데이트만</span>
+    <span class="tp">Optional</span>&lt;<span class="tp">TicketMapping</span>&gt; existing =
+        ticketMappingRepository.findBySourceTicketId(sourceTicketId);
+
+    <span class="kw">if</span> (existing.isPresent()) {
+        updateTicket(existing.get().targetTicketId(), sourceTicketId);
+        <span class="kw">return</span>;
+    }
+
+    <span class="tp">String</span> targetTicketId = <span class="kw">null</span>;
+    <span class="kw">try</span> {
+        <span class="cm">// 타겟에 티켓 생성</span>
+        targetTicketId = targetClient.createTicket(sourceTicketId);
+
+        <span class="cm">// 매핑 + 히스토리 저장</span>
+        ticketMappingRepository.save(
+            <span class="tp">TicketMapping</span>.of(sourceTicketId, targetTicketId)
+        );
+        syncHistoryRepository.save(
+            <span class="tp">SyncHistory</span>.ofNewTicket(sourceTicketId, targetTicketId)
+        );
+
+    } <span class="kw">catch</span> (<span class="tp">Exception</span> e) {
+        <span class="cm">// DB 저장 실패 시 타겟 티켓 롤백</span>
+        <span class="kw">if</span> (targetTicketId != <span class="kw">null</span>) {
+            targetClient.deleteTicket(targetTicketId);
+        }
+        <span class="kw">throw</span> e;
+    }
+}</pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label res">결과</div>
+                            <div class="ts-content">
+                                두 테이블이 각자 다른 역할로 문제를 해결합니다.<br><br>
+                                <strong style="color:#cdd6f4">SyncHistory</strong> — 변경된 티켓만 골라내는 필터. 10만 건 중 오늘 변경된 3건만 API를 호출하게 됩니다.<br><br>
+                                <strong style="color:#cdd6f4">TicketMapping</strong> — 소스 티켓에 대응하는 타겟 티켓이 이미 존재하는지 확인. 중복 생성을 원천 차단합니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ts-sep"></div>
+
+                    <!-- TS 04 -->
+                    <div style="margin-bottom:28px">
+                        <div class="ts-num">TROUBLE 04</div>
+                        <div class="ts-title">외부 API 변경 & 버전 대응</div>
+
+                        <div class="ts-block">
+                            <div class="ts-label prob">문제</div>
+                            <div class="ts-content">
+                                JIRA Server 8.x와 10.x는 REST API 엔드포인트 자체가 다르고, Codebeamer도 버전마다 스펙이 달라
+                                고객사마다 다른 구현체가 필요했습니다. 시스템 타입(JIRA_SERVER, CODEBEAMER)만으로 빈을 구분하면
+                                버전 정보가 누락되고, 소스와 타겟이 각각 다른 시스템일 때 클라이언트를 두 벌 꺼내야 한다는
+                                문제도 있었습니다.
+                            </div>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label sol">해결방법</div>
+                            <div class="ts-content">
+                                추상화 인터페이스 <code>TicketSystemClient</code>를 두고 버전별 구현체를 분리한 뒤,
+                                <code>TicketSystemClientFactory</code>가 systemType + version 조합으로 적절한 구현체를
+                                반환하도록 설계했습니다. 커넥션 테이블에 소스/타겟 각각의 시스템 타입과 버전을 저장해두고,
+                                동기화 시작 시 Factory에서 소스·타겟 클라이언트를 각각 꺼내 사용합니다.
+                            </div>
+                            <pre class="code"><span class="cm">// 추상화 인터페이스</span>
+<span class="kw">interface</span> <span class="tp">TicketSystemClient</span> {
+    List&lt;<span class="tp">Ticket</span>&gt; <span class="fn">fetchTickets</span>(<span class="tp">String</span> projectKey, <span class="tp">LocalDateTime</span> since);
+    <span class="kw">void</span> <span class="fn">updateTicket</span>(<span class="tp">String</span> ticketId, Map&lt;<span class="tp">String</span>, <span class="tp">Object</span>&gt; fields);
+}
+
+<span class="cm">// 버전별 구현체 분리</span>
+@Component <span class="kw">class</span> <span class="tp">JiraServer8Client</span>  <span class="kw">implements</span> <span class="tp">TicketSystemClient</span> { ... }
+@Component <span class="kw">class</span> <span class="tp">JiraServer10Client</span> <span class="kw">implements</span> <span class="tp">TicketSystemClient</span> { ... }
+@Component <span class="kw">class</span> <span class="tp">CodebeamerClient</span>   <span class="kw">implements</span> <span class="tp">TicketSystemClient</span> { ... }</pre>
+                            <pre class="code"><span class="cm">// Factory — systemType + version 조합 로직 캡슐화</span>
+@Component
+<span class="kw">class</span> <span class="tp">TicketSystemClientFactory</span> {
+
+    <span class="kw">private final</span> <span class="tp">JiraServer8Client</span>  jiraServer8Client;
+    <span class="kw">private final</span> <span class="tp">JiraServer10Client</span> jiraServer10Client;
+    <span class="kw">private final</span> <span class="tp">CodebeamerClient</span>   codebeamerClient;
+
+    <span class="kw">public</span> <span class="tp">TicketSystemClientFactory</span>(
+        <span class="tp">JiraServer8Client</span>  jiraServer8Client,
+        <span class="tp">JiraServer10Client</span> jiraServer10Client,
+        <span class="tp">CodebeamerClient</span>   codebeamerClient
+    ) {
+        <span class="kw">this</span>.jiraServer8Client  = jiraServer8Client;
+        <span class="kw">this</span>.jiraServer10Client = jiraServer10Client;
+        <span class="kw">this</span>.codebeamerClient   = codebeamerClient;
+    }
+
+    <span class="kw">public</span> <span class="tp">TicketSystemClient</span> <span class="fn">resolve</span>(<span class="tp">String</span> systemType, <span class="tp">String</span> version) {
+        <span class="kw">return switch</span> (systemType) {
+            <span class="kw">case</span> <span class="st">"JIRA_SERVER"</span> -> <span class="fn">resolveJiraServer</span>(version);
+            <span class="kw">case</span> <span class="st">"CODEBEAMER"</span>  -> codebeamerClient;
+            <span class="kw">default</span> -> <span class="kw">throw new</span> <span class="tp">UnsupportedSystemException</span>(systemType);
+        };
+    }
+
+    <span class="kw">private</span> <span class="tp">TicketSystemClient</span> <span class="fn">resolveJiraServer</span>(<span class="tp">String</span> version) {
+        <span class="kw">int</span> major = <span class="tp">Integer</span>.parseInt(version.split(<span class="st">"\\."</span>)[<span class="an">0</span>]);
+        <span class="kw">return</span> major >= <span class="an">10</span> ? jiraServer10Client : jiraServer8Client;
+    }
+}</pre>
+                            <pre class="code"><span class="cm">// SyncService — 소스/타겟 클라이언트 각각 꺼내기</span>
+<span class="kw">public void</span> <span class="fn">sync</span>(<span class="tp">Connection</span> connection) {
+    <span class="tp">TicketSystemClient</span> sourceClient = clientFactory.<span class="fn">resolve</span>(
+        connection.<span class="fn">sourceSystemType</span>(), connection.<span class="fn">sourceVersion</span>()
+    );
+    <span class="tp">TicketSystemClient</span> targetClient = clientFactory.<span class="fn">resolve</span>(
+        connection.<span class="fn">targetSystemType</span>(), connection.<span class="fn">targetVersion</span>()
+    );
+
+    List&lt;<span class="tp">Ticket</span>&gt; tickets = sourceClient.<span class="fn">fetchTickets</span>(...);
+    targetClient.<span class="fn">updateTicket</span>(...);
+}</pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label res">결과</div>
+                            <div class="ts-content">
+                                새 시스템이나 버전이 추가돼도 구현체와 Factory만 수정하면 되고,
+                                동기화 비즈니스 로직은 전혀 건드릴 필요가 없습니다.
+                                소스와 타겟이 서로 다른 시스템·버전 조합이어도 Factory 한 곳에서 일관되게 처리됩니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ts-sep"></div>
+
+                    <!-- TS 05 -->
+                    <div style="margin-bottom:28px">
+                        <div class="ts-num">TROUBLE 05</div>
+                        <div class="ts-title">last_synced_at 기준 시간 오염</div>
+
+                        <div class="ts-block">
+                            <div class="ts-label prob">문제</div>
+                            <div class="ts-content">가장 흔한 실수는 <code
+                                    style="background:#252b4a;padding:1px 5px;border-radius:3px;font-family:monospace">last_synced_at</code>에
+                                <strong style="color:#e24b4a">서버 현재 시간(LocalDateTime.now())</strong>을 저장하는 것입니다. 소스 티켓을
+                                읽은 시점(T1)과 DB에 last_synced_at을 저장하는 시점(T3) 사이에 소스가 변경되면 — T3가 소스의 새로운 updatedAt(T2)보다 크기
+                                때문에 — 그 변경을 영구적으로 놓치게 됩니다.
+                            </div>
+                            <pre class="code"><span class="cm">// 잘못된 방식 — 서버 현재 시간 저장</span>
+<span class="cm">// (이렇게 하면 T1~T3 사이 소스 변경을 영구 누락)</span>
+
+<span class="cm">// T1: 소스 읽기 → source_updated_at = T1</span>
+<span class="cm">// T2: (이 사이 소스 티켓 수정됨) → source_updated_at = T2</span>
+<span class="cm">// T3: last_synced_at = LocalDateTime.now() 저장</span>
+<span class="cm">// 결과: T3 > T2 → 다음 스케줄에서 변경 감지 안 됨</span></pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label sol">해결방법</div>
+                            <div class="ts-content"><code
+                                    style="background:#252b4a;padding:1px 5px;border-radius:3px;font-family:monospace">last_synced_at</code>에는
+                                반드시 <strong style="color:#50c896">소스 시스템이 알려준 updatedAt 값</strong>을 그대로 저장해야 합니다. 동기화 시작
+                                시 소스의 updatedAt을 미리 기록해두고, 성공 시에만 그 값으로 확정짓는 방식을 사용했습니다.
+                            </div>
+                            <pre class="code"><span class="cm">// 올바른 방식 — 소스의 updatedAt 기준으로 저장</span>
+
+<span class="cm">// 동기화 시작 시 — 소스 기준 시점을 미리 기록</span>
+history.markInProgress(sourceTicket.getUpdatedAt());
+
+<span class="cm">// 동기화 성공 시 — 소스 기준으로 확정</span>
+history.confirmSync();
+
+<span class="cm">// T1: 소스 읽기 → inProgressSince = T1 기록</span>
+<span class="cm">// T2: (이 사이 소스 티켓 수정됨) → source_updated_at = T2</span>
+<span class="cm">// 성공: last_synced_at = T1 저장</span>
+<span class="cm">// 결과: T2 > T1 → 다음 스케줄에서 변경 정상 감지</span></pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label res">결과</div>
+                            <div class="ts-content">읽는 시점과 저장 시점 사이에 소스가 변경되더라도, last_synced_at은 "우리가 마지막으로 읽은 버전의 시간"으로
+                                정확히 남아 다음 스케줄에서 변경을 놓치지 않게 됐습니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ts-sep"></div>
+
+                    <!-- TS 06 -->
+                    <div style="margin-bottom:28px">
+                        <div class="ts-num">TROUBLE 06</div>
+                        <div class="ts-title">타겟 직접 수정 시 Lost Update</div>
+
+                        <div class="ts-block">
+                            <div class="ts-label prob">문제</div>
+                            <div class="ts-content">소스가 Master라는 전제가 있더라도, 실제 운영에서는 타겟 JIRA, Codebeamer에서 담당자가 직접 티켓을 수정하는 일이 생겼습니다.
+                                그리고 다음 동기화 사이클에 소스 값이 타겟을 덮어쓰면서 <strong style="color:#e24b4a">타겟의 수동 수정 내용이 조용히
+                                    사라졌습니다.</strong> 신고가 들어오기 전까지는 아무도 모르는 경우가 많았습니다.
+                            </div>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label sol">해결방법</div>
+                            <div class="ts-content"><strong style="color:#cdd6f4">① 쓰기 전 타겟 현재 값과 비교 (Conflict
+                                Detection)</strong><br>
+                                동기화 시 타겟에 바로 쓰지 않고, 먼저 타겟의 현재 값을 읽어서 "시스템이 마지막으로 쓴 값"과 비교했습니다.
+                            </div>
+                            <pre class="code"><span class="tp">String</span> lastWrittenValue = syncHistory.getLastWrittenValue(fieldName);
+<span class="tp">String</span> currentTargetValue = targetClient.getFieldValue(ticketId, fieldName);
+<span class="tp">String</span> newSourceValue = sourceTicket.getFieldValue(fieldName);
+
+<span class="kw">if</span> (!currentTargetValue.equals(lastWrittenValue)) {
+    <span class="cm">// 타겟에서 직접 수정이 있었음 → Conflict 발생</span>
+    conflictLogService.record(ticketId, fieldName,
+        lastWrittenValue, currentTargetValue, newSourceValue);
+    <span class="cm">// 정책에 따라: 소스 우선 덮어쓰기 or 스킵 or 알림</span>
+}</pre>
+                            <div class="ts-content" style="margin-top:12px"><strong style="color:#cdd6f4">② 정책을 커넥션 단위로
+                                설정 가능하게</strong><br>
+                                Lost Update가 발생했을 때 어떻게 할지는 고객사마다 달랐습니다.
+                            </div>
+                            <pre class="code"><span class="cm">// ConflictPolicy (커넥션 설정)</span>
+SOURCE_WINS  <span class="cm">: 소스 값으로 무조건 덮어씀</span>
+TARGET_WINS  <span class="cm">: 타겟 직접 수정을 유지, 소스 변경 무시</span>
+NOTIFY_ONLY  <span class="cm">: 덮어쓰지 않고 담당자에게 Slack 알림만 발송</span></pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label res">결과</div>
+                            <div class="ts-content">T사처럼 "소스가 Master"인 경우 SOURCE_WINS를 기본으로 하되, Conflict 발생 건은 감사 로그에
+                                기록되어 나중에 추적할 수 있게 됐습니다. 고객사마다 다른 정책을 코드 수정 없이 적용할 수 있게 됐습니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ts-sep"></div>
+
+                    <!-- TS 07 -->
+                    <div style="margin-bottom:28px">
+                        <div class="ts-num">TROUBLE 07</div>
+                        <div class="ts-title">소스 타임스탬프 미갱신으로 인한 동기화 미스</div>
+
+                        <div class="ts-block">
+                            <div class="ts-label prob">문제</div>
+                            <div class="ts-content">JIRA 벌크 업데이트, 관리자의 DB 직접 수정은
+                                <strong style="color:#e24b4a">updatedAt을 갱신하지 않았습니다.</strong> 시스템은 변경이 없다고 판단하고 스킵했지만, 실제
+                                데이터는 달라져 있었습니다. 로그에도 정상으로 찍히니까 탐지가 거의 불가능했습니다. 이것이 10가지 케이스 중 가장 무서운 케이스였습니다.
+                            </div>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label sol">해결방법</div>
+                            <div class="ts-content">타임스탬프만 믿지 않고 <strong style="color:#cdd6f4">실제 데이터 해시값을 비교하는 체크섬 방식을
+                                병행</strong>했습니다. 동기화 성공 시 소스 티켓의 필드들을 해시로 저장하고, 매일 새벽 2시 배치로 전체를 검증했습니다.
+                            </div>
+                            <pre class="code"><span class="cm">// 동기화 성공 시 — 필드 체크섬 저장</span>
+<span class="cm">// (status + assignee + priority + description 등 동기화 대상 필드들)</span>
+<span class="tp">String</span> checksum = <span class="fn">generateChecksum</span>(sourceTicket);
+history.<span class="fn">recordChecksum</span>(checksum);</pre>
+
+                            <div class="ts-content" style="margin-top:12px">체크섬 배치와 forceSync 워커는 일반 동기화 스케줄러와 풀을 공유하면
+                                배치가 오래 걸릴 때 동기화가 블로킹되므로, <strong style="color:#cdd6f4">각 스케줄러마다 전용 풀을 독립적으로 선언</strong>했습니다.
+                            </div>
+                            <pre class="code"><span class="cm">// 체크섬 배치 전용 풀</span>
+@Bean(<span class="st">"checksumBatchScheduler"</span>)
+<span class="kw">public</span> <span class="tp">TaskScheduler</span> <span class="fn">checksumBatchScheduler</span>() {
+    <span class="tp">ThreadPoolTaskScheduler</span> scheduler = <span class="kw">new</span> <span class="tp">ThreadPoolTaskScheduler</span>();
+    scheduler.<span class="fn">setPoolSize</span>(<span class="nm">3</span>);
+    scheduler.<span class="fn">setThreadNamePrefix</span>(<span class="st">"checksum-batch-"</span>);
+    scheduler.<span class="fn">initialize</span>();
+    <span class="kw">return</span> scheduler;
+}
+
+<span class="cm">// forceSync 워커 전용 풀</span>
+@Bean(<span class="st">"forceSyncWorkerExecutor"</span>)
+<span class="kw">public</span> <span class="tp">TaskScheduler</span> <span class="fn">forceSyncWorkerExecutor</span>() {
+    <span class="tp">ThreadPoolTaskScheduler</span> scheduler = <span class="kw">new</span> <span class="tp">ThreadPoolTaskScheduler</span>();
+    scheduler.<span class="fn">setPoolSize</span>(<span class="nm">2</span>);
+    scheduler.<span class="fn">setThreadNamePrefix</span>(<span class="st">"force-sync-worker-"</span>);
+    scheduler.<span class="fn">initialize</span>();
+    <span class="kw">return</span> scheduler;
+}</pre>
+                            <pre class="code"><span class="cm">// 매일 새벽 2시 — 커서 기반 전체 체크섬 검증, 전용 풀에서 실행</span>
+@Scheduled(cron = <span class="st">"0 0 2 * * *"</span>, scheduler = <span class="st">"checksumBatchScheduler"</span>)
+<span class="kw">public void</span> <span class="fn">runChecksumVerification</span>() {
+    <span class="kw">for</span> (<span class="tp">Long</span> connectionId : connectionRepository.<span class="fn">findAllActiveConnectionIds</span>()) {
+        <span class="tp">String</span> cursor = <span class="kw">null</span>;
+        <span class="kw">do</span> {
+            <span class="tp">SyncChunk</span> chunk = syncHistoryRepository
+                .<span class="fn">findSyncTargetChunk</span>(connectionId, cursor, <span class="nm">500</span>);
+
+            <span class="kw">for</span> (<span class="tp">SyncHistory</span> history : chunk.<span class="fn">items</span>()) {
+                <span class="tp">Ticket</span> current = sourceClient.<span class="fn">fetchTicket</span>(history.<span class="fn">sourceTicketId</span>());
+                <span class="tp">String</span> currentChecksum = <span class="fn">generateChecksum</span>(current);
+
+                <span class="kw">if</span> (!currentChecksum.equals(history.<span class="fn">lastChecksum</span>())) {
+                    history.<span class="fn">markForceSync</span>();
+                }
+            }
+            cursor = chunk.<span class="fn">nextCursor</span>();
+        } <span class="kw">while</span> (cursor != <span class="kw">null</span>);
+    }
+}</pre>
+
+                            <div class="ts-content" style="margin-top:12px">체크섬 배치로 감지된 forceSync 대상은
+                                <strong style="color:#cdd6f4">일반 스케줄러와 분리된 전용 재처리 큐</strong>에 넣어 처리했습니다.
+                                매일 새벽 5시 한 번 소화하여 일반 동기화 흐름을 오염시키지 않도록 했습니다.
+                            </div>
+                            <pre class="code"><span class="cm">// 체크섬 배치 완료 후 — forceSync 대상을 전용 큐에 적재</span>
+<span class="kw">for</span> (<span class="tp">SyncHistory</span> history : forceSyncTargets) {
+    forceSyncQueue.<span class="fn">offer</span>(<span class="tp">ForceSyncJob</span>.<span class="fn">of</span>(
+        history.<span class="fn">connectionId</span>(),
+        history.<span class="fn">sourceTicketId</span>()
+    ));
+    history.<span class="fn">clearForceSync</span>();
+    history.<span class="fn">markForceSyncQueued</span>();
+}
+
+<span class="cm">// 전용 워커 — 매일 새벽 5시 독립 풀에서 실행</span>
+@Scheduled(cron = <span class="st">"0 0 5 * * *"</span>, scheduler = <span class="st">"forceSyncWorkerExecutor"</span>)
+<span class="kw">public void</span> <span class="fn">processForceSyncQueue</span>() {
+    <span class="kw">while</span> (!forceSyncQueue.<span class="tp">isEmpty()</span>) {
+        <span class="tp">ForceSyncJob</span> job = forceSyncQueue.<span class="fn">poll</span>();
+        <span class="kw">try</span> {
+            syncService.<span class="fn">syncTicket</span>(job.<span class="fn">connectionId</span>(), job.<span class="fn">sourceTicketId</span>());
+        } <span class="kw">catch</span> (<span class="tp">RateLimitException</span> e) {
+            forceSyncQueue.<span class="fn">enqueue</span>(job);
+            Thread.<span class="fn">sleep</span>(e.<span class="fn">retryAfterMs</span>());
+        }
+    }
+}</pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label res">결과</div>
+                            <div class="ts-content">타임스탬프 기반 실시간 동기화와 체크섬 배치가 이중 안전망을 형성했습니다.
+                                타임스탬프를 갱신하지 않는 외부 조작에 의한 데이터 불일치도 늦어도 다음 날 새벽 배치에서 감지하고 복구할 수 있게 됐습니다.
+                                각 스케줄러가 전용 풀을 독립적으로 가져가므로 배치가 오래 걸려도 일반 동기화 흐름에 영향을 주지 않습니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ts-sep"></div>
+
+                    <!-- TS 08 -->
+                    <div style="margin-bottom:28px">
+                        <div class="ts-num">TROUBLE 08</div>
+                        <div class="ts-title">소스 티켓 삭제 시 좀비 티켓 + 알림 폭탄</div>
+
+                        <div class="ts-block">
+                            <div class="ts-label prob">문제</div>
+                            <div class="ts-content">소스에서 티켓이 삭제되면 API는 404를 반환했습니다. 스케줄러 입장에선 그냥 에러라 재시도를 반복했고, 그때마다
+                                Slack 알림이 발송됐습니다. 운영자 입장에선 <strong style="color:#e24b4a">알림 폭탄</strong>을 맞고, 타겟에는
+                                <strong style="color:#e24b4a">삭제된 티켓이 좀비처럼 계속 남아있는</strong> 문제가 발생했습니다.
+                            </div>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label sol">해결방법</div>
+                            <div class="ts-content">404를 일반 에러가 아니라 <strong style="color:#cdd6f4">"이 티켓은 더 이상 존재하지
+                                않음"</strong>이라는 명확한 시그널로 별도 처리했습니다. 삭제 정책을 커넥션 단위로 설정 가능하게 했습니다.
+                            </div>
+                            <pre class="code"><span class="kw">private void</span> <span
+                                    class="fn">handleDeletedTicket</span>(<span class="tp">Connection</span> connection, <span
+                                    class="tp">String</span> ticketId) {
+    <span class="tp">SyncHistory</span> history = syncHistoryRepository
+        .findByConnectionAndSourceTicketId(connection.getId(), ticketId)
+        .orElseThrow();
+
+    <span class="kw">switch</span> (connection.deletionPolicy()) {
+        <span class="kw">case</span> SOFT_DELETE_TARGET:
+            targetClient.closeTicket(ticketId); <span class="cm">// 타겟 티켓 닫기</span>
+            <span class="kw">break</span>;
+        <span class="kw">case</span> HARD_DELETE_TARGET:
+            targetClient.deleteTicket(ticketId); <span class="cm">// 타겟 티켓 삭제</span>
+            <span class="kw">break</span>;
+        <span class="kw">case</span> KEEP_TARGET:
+            <span class="cm">// 타겟은 그대로 두고 동기화만 중단</span>
+            <span class="kw">break</span>;
+    }
+
+    history.markDeleted(); <span class="cm">// syncEnabled = false → 이후 스케줄에서 제외</span>
+    auditLogService.recordDeletion(connection.getId(), ticketId);
+    <span class="cm">// Slack 알림은 최초 1회만</span>
+}</pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label res">결과</div>
+                            <div class="ts-content">재시도 루프가 제거되고 알림 폭탄이 사라졌습니다. 타겟의 좀비 티켓도 정책에 따라 자동으로 처리됩니다.
+                                SyncHistory에 삭제 상태를 마킹하므로 이후 스케줄에서 아예 대상에서 제외됩니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ts-sep"></div>
+
+                    <!-- TS 09 -->
+                    <div style="margin-bottom:28px">
+                        <div class="ts-num">TROUBLE 09</div>
+                        <div class="ts-title">양방향 동기화 무한 루프</div>
+
+                        <div class="ts-block">
+                            <div class="ts-label prob">문제</div>
+                            <div class="ts-content">JIRA → Codebeamer, Codebeamer → JIRA를 양방향으로 설정하면 다음과 같은 루프가
+                                발생했습니다.<br>
+                                ① JIRA 티켓 변경 감지 → ② Codebeamer에 쓰기 (Codebeamer updatedAt 갱신) → ③ Codebeamer 변경 감지 (우리가 쓴
+                                건데 변경으로 인식) → ④ JIRA에 다시 쓰기 → ① 로 돌아감.<br>
+                                로그엔 계속 "동기화 성공"만 찍히니까 처음엔 정상처럼 보이다가 <strong style="color:#e24b4a">외부 API 호출량이 폭발하면서 Rate Limit에 걸리거나 성능 저하의 주 원인이 됐습니다.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label sol">해결방법</div>
+                            <div class="ts-content">
+                                "시스템이 쓴 변경"과 "사람이 만든 변경"을 구분하기 위해 <strong style="color:#cdd6f4">SyncWriteLog</strong> 테이블을
+                                별도로 두는 방식을 채택했습니다. 타겟에 쓸 때 반드시 로그를 기록하고, 반대 방향 스케줄러가 변경을 감지했을 때
+                                해당 티켓이 최근에 우리 시스템이 쓴 것인지 이 테이블에서 확인한 뒤 스킵 여부를 결정합니다.
+                            </div>
+                            <pre class="code"><span class="cm">// SyncWriteLog 테이블 — 우리 시스템이 타겟에 쓴 기록을 저장</span>
+<span class="cm">// connection_id + target_ticket_id 조합으로 "어느 커넥션이 어느 티켓에 썼는지" 추적</span>
+@Entity
+<span class="kw">class</span> <span class="tp">SyncWriteLog</span> {
+    <span class="kw">private</span> <span class="tp">Long</span>          connectionId;
+    <span class="kw">private</span> <span class="tp">String</span>        targetTicketId;
+    <span class="kw">private</span> <span class="tp">LocalDateTime</span> writtenAt;
+
+    <span class="kw">static</span> <span class="tp">SyncWriteLog</span> <span class="fn">of</span>(<span class="tp">Long</span> connectionId, <span class="tp">String</span> targetTicketId) {
+        <span class="tp">SyncWriteLog</span> log = <span class="kw">new</span> <span class="tp">SyncWriteLog</span>();
+        log.connectionId    = connectionId;
+        log.targetTicketId  = targetTicketId;
+        log.writtenAt       = <span class="tp">LocalDateTime</span>.now();
+        <span class="kw">return</span> log;
+    }
+}</pre>
+                            <pre class="code"><span class="cm">// 타겟에 쓰고 나면 반드시 SyncWriteLog에 기록</span>
+<span class="kw">public void</span> <span class="fn">writeToTarget</span>(<span class="tp">TicketSystemClient</span> targetClient,
+                           <span class="tp">Long</span> connectionId,
+                           <span class="tp">String</span> targetTicketId,
+                           Map&lt;<span class="tp">String</span>, <span class="tp">Object</span>&gt; fields) {
+    targetClient.<span class="fn">updateTicket</span>(targetTicketId, fields);
+    syncWriteLogRepository.save(<span class="tp">SyncWriteLog</span>.<span class="fn">of</span>(connectionId, targetTicketId));
+}</pre>
+                            <pre class="code"><span class="cm">// 반대 방향 스케줄러 — 변경 감지 시 우리가 쓴 것인지 먼저 확인</span>
+<span class="kw">public boolean</span> <span class="fn">isRecentlySyncWritten</span>(<span class="tp">Long</span> connectionId,
+                                      <span class="tp">String</span> targetTicketId,
+                                      <span class="tp">LocalDateTime</span> ticketUpdatedAt) {
+    <span class="kw">return</span> syncWriteLogRepository
+        .<span class="fn">findMostRecentWrite</span>(connectionId, targetTicketId)
+        .map(log -> {
+            <span class="cm">// 우리가 쓴 시각 이후 updatedAt이 더 최신이면 사람이 다시 수정한 것</span>
+            <span class="cm">// 5초 버퍼 — 타겟 시스템의 updatedAt 갱신 지연을 감안한 값</span>
+            <span class="kw">return</span> !ticketUpdatedAt.isAfter(log.<span class="fn">writtenAt</span>().plusSeconds(<span class="nm">5</span>));
+        })
+        .orElse(<span class="kw">false</span>);
+}
+
+<span class="cm">// 스케줄러 루프에서</span>
+<span class="kw">for</span> (<span class="tp">Ticket</span> sourceTicket : changedTickets) {
+    <span class="kw">if</span> (<span class="fn">isRecentlySyncWritten</span>(connectionId,
+                               sourceTicket.<span class="fn">id</span>(),
+                               sourceTicket.<span class="fn">updatedAt</span>())) {
+        history.<span class="fn">recordSkippedAsSyncOrigin</span>();
+        <span class="kw">continue</span>; <span class="cm">// 우리가 쓴 변경 → 루프 차단</span>
+    }
+    <span class="fn">syncToTarget</span>(sourceTicket); <span class="cm">// 사람이 만든 변경 → 동기화 진행</span>
+}</pre>
+                            <div class="ts-content" style="margin-top:12px">
+                                SyncWriteLog는 무한정 쌓이면 조회 성능이 저하되므로,
+                                1시간마다 만료된 레코드를 정리하는 배치를 돌렸습니다.
+                                5초 버퍼 판단에만 쓰이는 로그라 1시간 이상 된 레코드는 안전하게 삭제할 수 있습니다.
+                            </div>
+                            <pre class="code"><span class="cm">// 오래된 SyncWriteLog 정리 배치 — 매시간 실행, 전용 풀에서 실행</span>
+@Scheduled(cron = <span class="st">"0 0 * * * *"</span>, scheduler = <span class="st">"syncWriteLogPurgeScheduler"</span>)
+<span class="kw">public void</span> <span class="fn">purgeExpiredWriteLogs</span>() {
+    syncWriteLogRepository.<span class="fn">deleteOlderThan</span>(<span class="tp">LocalDateTime</span>.now().minusHours(<span class="nm">1</span>));
+}</pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label res">결과</div>
+                            <div class="ts-content">
+                                양방향 동기화 무한 루프가 완전히 차단됐습니다. 시스템이 쓴 변경은 SyncWriteLog 조회 한 번으로 즉시 스킵되고,
+                                사람이 만든 변경만 정상적으로 동기화됩니다. 커스텀 필드를 지원하지 않는 시스템에도 동일하게 적용되며,
+                                배치 정리로 테이블 사이즈도 일정하게 유지됩니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ts-sep"></div>
+
+                    <!-- TS 10 -->
+                    <div style="margin-bottom:28px">
+                        <div class="ts-num">TROUBLE 10</div>
+                        <div class="ts-title">티켓 10만 건 초과 시 스케줄러 성능 저하</div>
+
+                        <div class="ts-block">
+                            <div class="ts-label prob">문제</div>
+                            <div class="ts-content">초기엔 티켓이 수천 개라 스케줄러가 1~2분 안에 끝났는데, 운영이 길어지면서 누적 티켓이 10만 건을 넘어가자
+                                <strong style="color:#e24b4a">스케줄러 한 번 실행에 수십 분이 걸렸습니다.</strong> 심하면 다음 스케줄 실행 시간과 겹치는
+                                상황까지 발생했습니다. 병목은 세 군데였습니다. ① DB 풀스캔으로 10만 건 전체 순회 ② 외부 API 건당 1회 호출(10만 번) ③ 단일 스레드 순차 처리.
+                            </div>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label sol">해결방법</div>
+                            <div class="ts-content"><strong style="color:#cdd6f4">① 소스 시스템 선 필터링 — 가장 큰 개선</strong><br>
+                                10만 건 중 실제로 변경된 티켓은 몇 개 안 됩니다. DB를 전부 뒤지기 전에 소스 시스템 자체 검색 기능(JQL 등)으로
+                                최근 변경된 티켓 ID만 먼저 받아옵니다. 처리 대상이 10만 건에서 수백 건으로 줄어듭니다.
+                            </div>
+                            <pre class="code"><span class="cm">// 소스에서 최근 변경된 티켓 ID만 먼저 조회</span>
+<span class="tp">String</span> jql = <span class="st">"project = T_PROJECT AND updatedDate >= -1h"</span>;
+List&lt;<span class="tp">String</span>&gt; changedTicketIds = sourceClient.<span class="fn">searchTickets</span>(jql);
+
+<span class="cm">// 변경된 것들만 DB에서 꺼내기 — 풀스캔 없음</span>
+List&lt;<span class="tp">SyncHistory</span>&gt; targets = syncHistoryRepository
+    .<span class="fn">findByConnectionAndSourceTicketIds</span>(connectionId, changedTicketIds);</pre>
+
+                            <div class="ts-content" style="margin-top:12px"><strong style="color:#cdd6f4">② 외부 API 벌크 조회</strong><br>
+                                선 필터링으로 추린 티켓들도 건당 1회씩 API를 호출하면 n번 호출이 발생합니다.
+                                티켓 ID를 500개씩 묶어 벌크 API로 한 번에 가져옵니다.
+                            </div>
+                            <pre class="code"><span class="cm">// Before: n번 호출 → After: 배치 단위 호출</span>
+List&lt;List&lt;<span class="tp">String</span>&gt;&gt; batches = partition(changedTicketIds, <span class="nm">500</span>);
+<span class="kw">for</span> (List&lt;<span class="tp">String</span>&gt; batch : batches) {
+    List&lt;<span class="tp">Ticket</span>&gt; tickets = sourceClient.<span class="fn">fetchTicketsBulk</span>(batch);
+    <span class="fn">processBatch</span>(connectionId, tickets);
+}</pre>
+
+                            <div class="ts-content" style="margin-top:12px"><strong style="color:#cdd6f4">③ 커넥션별 독립 스레드 풀 + 병렬 처리</strong><br>
+                                전역 공유 풀을 쓰면 커넥션 A가 스레드를 점유할 때 커넥션 B가 대기합니다.
+                                커넥션별로 풀을 독립적으로 관리하면 서로 영향을 주지 않습니다.
+                                스레드 수는 해당 외부 API의 Rate Limit을 넘지 않는 선에서 5개로 고정했습니다.
+                            </div>
+                            <pre class="code"><span class="cm">// 커넥션별 독립 풀 — Map으로 동적 생성</span>
+<span class="kw">private final</span> Map&lt;<span class="tp">Long</span>, <span class="tp">ExecutorService</span>&gt; connectionExecutors = <span class="kw">new</span> <span class="tp">ConcurrentHashMap</span>&lt;&gt;();
+
+<span class="kw">private</span> <span class="tp">ExecutorService</span> <span class="fn">resolveExecutor</span>(<span class="tp">Long</span> connectionId) {
+    <span class="kw">return</span> connectionExecutors.<span class="fn">computeIfAbsent</span>(connectionId,
+        id -> Executors.<span class="fn">newFixedThreadPool</span>(<span class="nm">5</span>));
+}
+
+<span class="kw">public void</span> <span class="fn">processBatch</span>(<span class="tp">Long</span> connectionId, List&lt;<span class="tp">Ticket</span>&gt; tickets) {
+    <span class="tp">ExecutorService</span> executor = <span class="fn">resolveExecutor</span>(connectionId);
+    List&lt;<span class="tp">CompletableFuture</span>&lt;<span class="tp">Void</span>&gt;&gt; futures = tickets.stream()
+        .map(ticket -> <span class="tp">CompletableFuture</span>.<span class="fn">runAsync</span>(
+            () -> <span class="fn">syncSingleTicket</span>(ticket), executor))
+        .toList();
+    <span class="tp">CompletableFuture</span>.<span class="fn">allOf</span>(futures.toArray(<span class="kw">new</span> <span class="tp">CompletableFuture</span>[<span class="nm">0</span>])).<span class="fn">join</span>();
+}</pre>
+
+                            <div class="ts-content" style="margin-top:12px"><strong style="color:#cdd6f4">④ DB 인덱스 + 커서 기반 청크 조회 — 야간 체크섬 배치 전용</strong><br>
+                                TROUBLE 07의 야간 체크섬 검증은 소스에 물어볼 수 없고 DB 전체를 순회해야 합니다.
+                                이 경우에만 커서 기반으로 500개씩 나눠 풀스캔을 방지합니다.
+                            </div>
+                            <pre class="code"><span class="cm">// 인덱스: (connection_id, last_synced_at, sync_enabled)</span>
+<span class="cm">// 야간 체크섬 배치에서만 사용 — 전체 순회가 불가피한 경우</span>
+<span class="tp">String</span> cursor = <span class="kw">null</span>;
+<span class="kw">do</span> {
+    <span class="tp">SyncChunk</span> chunk = syncHistoryRepository
+        .<span class="fn">findSyncTargetChunk</span>(connectionId, cursor, <span class="nm">500</span>);
+    <span class="fn">verifyChecksum</span>(chunk.<span class="fn">items</span>());
+    cursor = chunk.<span class="fn">nextCursor</span>();
+} <span class="kw">while</span> (cursor != <span class="kw">null</span>);</pre>
+
+                            <div class="ts-content" style="margin-top:12px"><strong style="color:#cdd6f4">전체 흐름</strong></div>
+                            <pre class="code"><span class="cm">// ── 스케줄러 실행 (매 1시간) ──────────────────────────────</span>
+<span class="kw">public void</span> <span class="fn">runScheduledSync</span>(<span class="tp">Long</span> connectionId) {
+
+    <span class="cm">// ① 소스에서 최근 변경된 티켓 ID만 먼저 조회</span>
+    List&lt;<span class="tp">String</span>&gt; changedTicketIds = sourceClient.<span class="fn">searchTickets</span>(...);
+
+    <span class="cm">// ② 500개씩 묶어 벌크 API 조회</span>
+    <span class="kw">for</span> (List&lt;<span class="tp">String</span>&gt; batch : partition(changedTicketIds, <span class="nm">500</span>)) {
+        List&lt;<span class="tp">Ticket</span>&gt; tickets = sourceClient.<span class="fn">fetchTicketsBulk</span>(batch);
+
+        <span class="cm">// ③ 커넥션별 독립 풀로 병렬 처리</span>
+        <span class="fn">processBatch</span>(connectionId, tickets);
+    }
+}
+
+<span class="cm">// ── 야간 체크섬 배치 (새벽 2시) ──────────────────────────</span>
+<span class="kw">public void</span> <span class="fn">runChecksumVerification</span>(<span class="tp">Long</span> connectionId) {
+
+    <span class="cm">// ④ 전체 순회가 불가피 — 커서 기반 청크로 풀스캔 방지</span>
+    <span class="tp">String</span> cursor = <span class="kw">null</span>;
+    <span class="kw">do</span> {
+        <span class="tp">SyncChunk</span> chunk = syncHistoryRepository
+            .<span class="fn">findSyncTargetChunk</span>(connectionId, cursor, <span class="nm">500</span>);
+        <span class="fn">verifyChecksum</span>(chunk.<span class="fn">items</span>());
+        cursor = chunk.<span class="fn">nextCursor</span>();
+    } <span class="kw">while</span> (cursor != <span class="kw">null</span>);
+}</pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label res">결과</div>
+                            <div class="ts-content">수십 분 걸리던 스케줄러 실행 시간이 분 단위로 대폭 감소했습니다. 소스 선 필터링이 가장 큰 효과를 냈고,
+                                벌크 조회와 병렬 처리가 그 위에서 추가 속도를 확보했습니다.
+                                커넥션별 독립 풀로 여러 커넥션이 동시에 실행돼도 서로 영향을 주지 않으며,
+                                티켓 레벨 락(TROUBLE 02)과 SyncWriteLog(TROUBLE 09)가 함께 동작하여 성능과 안전성을 동시에 확보했습니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="impact-row">
+                        <span class="imp">연간 $2,625 비용 절감</span>
+                        <span class="imp">수작업 제로화</span>
+                        <span class="imp">10만 티켓 성능 최적화</span>
+                        <span class="imp">1년간 AWS 무중단 운영</span>
+                        <span class="imp amber">후속 계약 체결</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- P2: 현대자동차 -->
+            <div class="proj-card">
+                <div class="proj-card-header">
+                    <div class="proj-card-header-left">
+                        <div class="proj-badge-row">
+                            <span class="pbadge pbadge-client">납품 · 운영중</span>
+                            <span class="pbadge pbadge-team">4인 팀 · 기여도 80%</span>
+                        </div>
+                        <div class="proj-title">현대자동차 Monday.com 파일 관리 시스템</div>
+                        <div class="proj-period">오픈소스컨설팅 (OSC) &nbsp;|&nbsp; 2025.12 – 2026.04</div>
+                    </div>
+                    <div class="proj-period-badge">Spring Boot 3 · Java 17 · React 18</div>
+                </div>
+                <div class="proj-body">
+                    <div class="proj-overview">
+                        현대자동차가 Monday.com PMS에 업로드하는 기밀 문서를 <strong>외부 SaaS 클라우드가 아닌 사내 NAS</strong>에
+                        저장·관리하기 위한 전용 파일 관리 시스템. 보안·감사 책임을 내부로 가져오고,
+                        <strong>2GB 이상 대용량 파일</strong>도 안정적으로 처리하는 구조를 설계·구현했습니다.<br><br>
+                        <a href="https://velog.io/@chyonees/file-server-pj" target="_blank" style="font-size:13px;">📝 프로젝트 회고록 보기 ↗</a>
+                    </div>
+
+                    <div class="stack-row">
+                        <span class="stag p">Spring Boot 3.5.7</span>
+                        <span class="stag p">Java 17</span>
+                        <span class="stag p">Spring Data JPA</span>
+                        <span class="stag p">Spring Batch</span>
+                        <span class="stag p">Spring Security</span>
+                        <span class="stag">MySQL</span>
+                        <span class="stag">H2 Database</span>
+                        <span class="stag">JJWT</span>
+                        <span class="stag">React 18</span>
+                        <span class="stag">Vite 6</span>
+                        <span class="stag">Monday SDK</span>
+                        <span class="stag">AIP 암복호화</span>
+                    </div>
+
+                    <div class="psi-grid">
+                        <div class="psi-card problem">
+                            <div class="psi-label">Problem</div>
+                            <div class="psi-text">Monday.com 기본 파일 첨부는 기밀 문서를 외부 SaaS 클라우드에 저장. 보안·감사 책임 소재 불분명, 2GB 이상 대용량 파일 업로드 불가</div>
+                        </div>
+                        <div class="psi-card solution">
+                            <div class="psi-label">Solution</div>
+                            <div class="psi-text">Monday.com 앱과 사내 Spring Boot 백엔드를 연동. Chunk &amp; Merge 업로드 + NAS 저장 + AIP 암복호화 + 감사 로그를 통합한 파일 관리 인프라 구축</div>
+                        </div>
+                        <div class="psi-card impact">
+                            <div class="psi-label">Impact</div>
+                            <div class="psi-text">GB급 대용량 파일 안정 처리, 기밀 문서 보안·감사 내재화, 비동기 처리로 사용자 응답 속도 개선, 레거시 파일 마이그레이션 완료</div>
+                        </div>
+                    </div>
+
+                    <div class="contrib-title">주요 기여</div>
+                    <div class="contrib-list">
+                        <div class="contrib-item">
+                            <div class="contrib-num">01</div>
+                            <div class="contrib-content">
+                                <strong>Chunk &amp; Merge 기반 대용량 업로드 설계 — 순서 보장 &amp; Resume</strong>
+                                <p>현대자동차 PPT 파일은 동영상 포함으로 2GB를 초과하는 경우가 많아, 파일 전체를 한 번에 전송하면 OOM이 발생할 것으로 판단했습니다.
+                                    UploadTask(작업 단위)와 UploadChunk(청크 단위) 도메인 모델을 설계하여 파일을 10MB 단위로 분할 업로드하는 구조를 구현했습니다.</p>
+                                <p style="margin-top:6px">청크 전송 시 순서 보장 문제를 고려했습니다. "파일을 열고 이어붙이는" 방식은 가장 빠르지만 동시 전송 시 순서를 보장할 수 없어 파일이 깨질 수 있습니다.
+                                    대신 <strong>각 청크를 개별 파일로 저장 후, 모든 청크 업로드 완료 시 인덱스 순서대로 스트림 병합</strong>하는 방식을 채택하여 파일 무결성을 확보했습니다.
+                                    또한 모든 청크 메타데이터를 선 생성해두어, 중단 시점 이후 남은 청크만 재전송하는 Resume 기능도 함께 구현했습니다.</p>
+                            </div>
+                        </div>
+                        <div class="contrib-item">
+                            <div class="contrib-num">02</div>
+                            <div class="contrib-content">
+                                <strong>파일 암복호화(AIP) 및 NAS 저장 + 감사 로그 설계</strong>
+                                <p>실제 파일은 사내 NAS 마운트 경로에 저장하고, Monday.com에는 파일명·경로·크기·MIME 타입 등 메타데이터만 남기는 구조를 설계했습니다.
+                                    AIP 서비스를 통해 업로드 시 평문화를, 다운로드 시 암호화를 수행하여 권한 없는 사용자가 파일을 습득하더라도 내용을 열람할 수 없도록 구현했습니다.
+                                    파일 저장명은 UUID 기반 난수값을 사용하고, 화면 표시용 원본 파일명을 별도 컬럼에 보관하는 방식으로 중복 파일명 충돌을 방지했습니다.
+                                    업로드·다운로드·삭제·중단·재개 등 모든 행위에 대한 감사 로그 테이블도 함께 설계했습니다.</p>
+                            </div>
+                        </div>
+                        <div class="contrib-item">
+                            <div class="contrib-num">03</div>
+                            <div class="contrib-content">
+                                <strong>Spring Batch 기반 레거시 파일 마이그레이션</strong>
+                                <p>Monday.com 도입 전 기존 PMS에 등록된 5만개의 파일들을 Monday.com으로 마이그레이션하는 배치 작업을 Spring Batch로 설계·구현했습니다.
+                                    Job/Step/Reader/Processor/Writer 구조로 안정적인 대용량 데이터 이관을 처리했습니다.</p>
+                            </div>
+                        </div>
+                        <div class="contrib-item">
+                            <div class="contrib-num">04</div>
+                            <div class="contrib-content">
+                                <strong>파일 일괄 다운로드 — 병렬 AIP 암호화 + 디스크 ZIP 스트리밍</strong>
+                                <p>여러 파일을 한 번에 다운로드하는 요구사항이 발생했습니다. AIP 암호화는 파일당 최대 120초가 소요되는 I/O 바운드 외부 호출이므로, 10개 파일을 순차 처리하면 최대 20분이 걸려 클라이언트 타임아웃을 초과할 수 있었습니다.</p>
+                                <p style="margin-top:6px"><strong>CompletableFuture.supplyAsync()로 AIP 암호화를 병렬 실행</strong>하는 전용 스레드 풀(bulkDownloadAipExecutor, corePoolSize=5, maxPoolSize=10)을 설계했습니다.
+                                    암호화 완료 후 ZipOutputStream으로 디스크에 ZIP을 먼저 기록하고, StreamingResponseBody로 전송하는 방식을 채택했습니다.
+                                    스트리밍 ZIP 방식은 Content-Length를 사전에 알 수 없어 프론트엔드 진행률 표시가 불가능하므로, 디스크에 ZIP을 완성한 뒤 <code>Files.size()</code>로 정확한 Content-Length를 제공하는 구조를 선택했습니다.
+                                    일부 파일의 AIP 실패 시 성공한 파일만으로 ZIP을 구성하고 실패 정보를 <code>X-Bulk-Download-Failed-Files</code> 응답 헤더로 전달하는 <strong>부분 실패 허용 전략</strong>도 적용했습니다.
+                                    기존 단건 다운로드의 AIP 처리 로직은 <code>DownloadFilePreparationHelper</code>로 추출하여 단건·일괄 다운로드가 동일 코드를 공유하도록 구조를 개선했습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contrib-title">트러블슈팅</div>
+
+                    <div style="margin-bottom:28px">
+                        <div class="ts-num">TROUBLE 01</div>
+                        <div class="ts-title">@Async self-invocation — 비동기가 동기로 동작하는 버그</div>
+
+                        <div class="ts-block">
+                            <div class="ts-label prob">문제</div>
+                            <div class="ts-content">
+                                파일 병합·NAS 저장·감사 로그 등 후속 작업을 <code>@Async</code>로 비동기 분리했으나,
+                                같은 클래스의 <code>completeUpload()</code>에서 <code>processCompletionAsync()</code>를
+                                직접 호출하면 여전히 동기로 동작했습니다. 사용자는 청크 전송 완료 후에도
+                                후속 처리가 끝날 때까지 응답을 받지 못했습니다.
+                            </div>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label sol">해결방법</div>
+                            <div class="ts-content">
+                                Spring의 <code>@Async</code> / <code>@Transactional</code>은 프록시 기반입니다.
+                                같은 클래스 내 메서드 호출(<code>this.xxx()</code>)은 프록시가 아닌 실제 객체를 호출하기 때문에
+                                AOP가 무효화됩니다. 비동기 처리 메서드를 별도 <code>UploadCompletionService</code>로 분리하여
+                                Spring이 관리하는 프록시 빈을 주입받아 호출하도록 리팩토링했습니다.
+                            </div>
+                            <pre class="code"><span class="cm">// Before — self-invocation: 프록시 우회, @Async 무효</span>
+@Service
+<span class="kw">class</span> <span class="tp">UploadService</span> {
+
+    <span class="kw">public void</span> <span class="fn">completeUpload</span>(<span class="tp">Long</span> taskId) {
+        <span class="fn">validateAllChunksUploaded</span>(taskId);
+        <span class="fn">processCompletionAsync</span>(taskId); <span class="cm">// this.xxx() → 프록시 거치지 않음</span>
+    }
+
+    @Async
+    <span class="kw">public void</span> <span class="fn">processCompletionAsync</span>(<span class="tp">Long</span> taskId) { ... }
+}</pre>
+                            <pre class="code"><span class="cm">// After — 별도 빈으로 분리, 프록시 통해 호출</span>
+@Service
+<span class="kw">class</span> <span class="tp">UploadService</span> {
+
+    <span class="kw">private final</span> <span class="tp">UploadCompletionService</span> completionService;
+
+    <span class="kw">public void</span> <span class="fn">completeUpload</span>(<span class="tp">Long</span> taskId) {
+        <span class="fn">validateAllChunksUploaded</span>(taskId);
+        completionService.<span class="fn">processAsync</span>(taskId); <span class="cm">// 프록시 빈 호출 → @Async 정상 동작</span>
+    }
+}
+
+@Service
+<span class="kw">class</span> <span class="tp">UploadCompletionService</span> {
+
+    @Async
+    <span class="kw">public void</span> <span class="fn">processAsync</span>(<span class="tp">Long</span> taskId) {
+        <span class="fn">mergeChunks</span>(taskId);
+        <span class="fn">saveToNas</span>(taskId);
+        <span class="fn">recordAuditLog</span>(taskId);
+    }
+}</pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label res">결과</div>
+                            <div class="ts-content">
+                                사용자는 청크 전송 완료 직후 응답을 받고 화면을 이탈할 수 있게 됐습니다.
+                                후속 처리(병합·NAS 저장·감사 로그)는 백그라운드에서 독립적으로 진행되어 UX가 개선됐습니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:28px">
+                        <div class="ts-num">TROUBLE 02</div>
+                        <div class="ts-title">취소 버튼 눌러도 청크가 계속 전송되는 버그</div>
+
+                        <div class="ts-block">
+                            <div class="ts-label prob">문제</div>
+                            <div class="ts-content">
+                                취소 버튼 클릭 시 <code>ChunkManager.abort()</code>가 호출되어 <code>AbortController</code>로
+                                진행 중인 fetch를 중단했음에도, 네트워크 탭에서 남은 청크 업로드 요청이 계속 발생했습니다.
+                                <code>AbortController</code>는 "현재 진행 중인 네트워크 요청"만 취소합니다.
+                                워커 루프(<code>while chunks.length > 0</code>)는 취소 여부를 전혀 확인하지 않아,
+                                <code>AbortError</code>로 현재 청크가 종료돼도 루프가 다음 청크를 계속 <code>shift()</code>하여
+                                <strong style="color:#e24b4a">새 요청을 계속 보냈습니다.</strong>
+                            </div>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label sol">해결방법</div>
+                            <div class="ts-content">
+                                <em>"I/O 취소"와 "작업 취소"는 다르다</em>는 것을 파악하고,
+                                <code>ChunkManager</code>에 도메인 레벨 취소 플래그(<code>cancelled</code>)를 추가했습니다.
+                                워커 루프 조건과 <code>uploadSingleChunk</code> 진입 시점 두 곳 모두에서
+                                <code>isCancelled()</code>를 확인하도록 수정했습니다.
+                            </div>
+                            <pre class="code"><span class="cm">// Before — AbortController만으로 취소 시도, 루프는 계속 돌아감</span>
+<span class="kw">class</span> <span class="tp">ChunkManager</span> {
+    controller = <span class="kw">new</span> AbortController();
+
+    <span class="fn">abort</span>() {
+        <span class="kw">this</span>.controller.<span class="fn">abort</span>(); <span class="cm">// 현재 요청만 중단</span>
+    }
+
+    <span class="kw">async</span> <span class="fn">startWorker</span>() {
+        <span class="kw">while</span> (<span class="kw">this</span>.chunks.length > <span class="nm">0</span>) {        <span class="cm">// 취소 여부 확인 없음</span>
+            <span class="kw">const</span> chunk = <span class="kw">this</span>.chunks.<span class="fn">shift</span>();
+            <span class="kw">await this</span>.<span class="fn">uploadSingleChunk</span>(chunk); <span class="cm">// AbortError → 다음 루프 계속 진행</span>
+        }
+    }
+}</pre>
+                            <pre class="code"><span class="cm">// After — 도메인 레벨 취소 플래그 추가</span>
+<span class="kw">class</span> <span class="tp">ChunkManager</span> {
+    controller = <span class="kw">new</span> AbortController();
+    cancelled  = <span class="kw">false</span>;
+
+    <span class="fn">abort</span>() {
+        <span class="kw">this</span>.cancelled = <span class="kw">true</span>;  <span class="cm">// 작업 취소 플래그</span>
+        <span class="kw">this</span>.controller.<span class="fn">abort</span>(); <span class="cm">// 현재 I/O 취소</span>
+    }
+
+    <span class="fn">isCancelled</span>() { <span class="kw">return this</span>.cancelled; }
+
+    <span class="kw">async</span> <span class="fn">startWorker</span>() {
+        <span class="kw">while</span> (<span class="kw">this</span>.chunks.length > <span class="nm">0</span> && !<span class="kw">this</span>.<span class="fn">isCancelled</span>()) { <span class="cm">// 루프 진입 전 확인</span>
+            <span class="kw">const</span> chunk = <span class="kw">this</span>.chunks.<span class="fn">shift</span>();
+            <span class="kw">if</span> (<span class="kw">this</span>.<span class="fn">isCancelled</span>()) <span class="kw">break</span>;          <span class="cm">// 청크 처리 직전 재확인</span>
+            <span class="kw">await this</span>.<span class="fn">uploadSingleChunk</span>(chunk);
+        }
+    }
+}</pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label res">결과</div>
+                            <div class="ts-content">
+                                취소 버튼 클릭 즉시 워커 루프가 중단되어 불필요한 네트워크 요청이 발생하지 않습니다.
+                                JS 싱글 스레드 특성상 여러 워커의 <code>chunks.shift()</code> 동시 접근은 중복 없이 안전하며,
+                                취소 플래그로 "작업 취소" 시맨틱을 명확히 분리했습니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:28px">
+                        <div class="ts-num">TROUBLE 03</div>
+                        <div class="ts-title">대용량 파일 다운로드 OOM — StreamingResponseBody 도입</div>
+
+                        <div class="ts-block">
+                            <div class="ts-label prob">문제</div>
+                            <div class="ts-content">
+                                다운로드 시 <code>Files.readAllBytes()</code>로 파일 전체를 <code>byte[]</code>로 읽어
+                                JVM 힙에 올린 후 응답했습니다. 2GB 이상 파일에서는 <code>int</code> 범위 초과 및
+                                <strong style="color:#e24b4a">OOM 위험</strong>이 존재했습니다.
+                            </div>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label sol">해결방법</div>
+                            <div class="ts-content">
+                                <code>FileSystemResource</code> 방식 대신 <code>StreamingResponseBody</code>를 도입했습니다.
+                                AIP 암복호화 후 생성되는 임시 파일을 <code>InputStream</code>으로 읽어
+                                <code>OutputStream</code>으로 즉시 흘려보내고(<code>transferTo</code>),
+                                <code>finally</code> 블록에서 임시 파일을 삭제하는
+                                <code>FileDownloadStreamer</code> 컴포넌트를 별도 설계했습니다.
+                            </div>
+                            <pre class="code"><span class="cm">// Before — 전체를 힙에 올림, 2GB에서 OOM</span>
+<span class="kw">public</span> ResponseEntity&lt;<span class="tp">byte[]</span>&gt; <span class="fn">download</span>(<span class="tp">Long</span> fileId) {
+    <span class="tp">Path</span>   decrypted = aipService.<span class="fn">decrypt</span>(fileId);
+    <span class="kw">byte</span>[] bytes     = <span class="tp">Files</span>.<span class="fn">readAllBytes</span>(decrypted); <span class="cm">// 2GB → OOM</span>
+    <span class="kw">return</span> ResponseEntity.<span class="fn">ok</span>(bytes);
+}</pre>
+                            <pre class="code"><span class="cm">// After — InputStream → OutputStream 스트리밍, 힙 사용량 버퍼 크기 수준 유지</span>
+@Component
+<span class="kw">class</span> <span class="tp">FileDownloadStreamer</span> {
+
+    <span class="kw">public</span> <span class="tp">StreamingResponseBody</span> <span class="fn">stream</span>(<span class="tp">Path</span> decryptedFile) {
+        <span class="kw">return</span> outputStream -> {
+            <span class="kw">try</span> (<span class="tp">InputStream</span> in = <span class="tp">Files</span>.<span class="fn">newInputStream</span>(decryptedFile)) {
+                in.<span class="fn">transferTo</span>(outputStream); <span class="cm">// 청크 단위로 흘려보냄</span>
+            } <span class="kw">finally</span> {
+                <span class="tp">Files</span>.<span class="fn">deleteIfExists</span>(decryptedFile); <span class="cm">// 임시 파일 정리</span>
+            }
+        };
+    }
+}
+
+<span class="cm">// 컨트롤러 — 컨트롤러·서비스·스트리머 각 책임 분리</span>
+<span class="kw">public</span> ResponseEntity&lt;<span class="tp">StreamingResponseBody</span>&gt; <span class="fn">download</span>(<span class="tp">Long</span> fileId) {
+    <span class="tp">FileMetadata</span>         meta      = fileService.<span class="fn">findMetadata</span>(fileId);
+    <span class="tp">Path</span>                  decrypted = aipService.<span class="fn">decrypt</span>(fileId);
+    <span class="tp">StreamingResponseBody</span> body      = streamer.<span class="fn">stream</span>(decrypted);
+
+    <span class="kw">return</span> ResponseEntity.<span class="fn">ok</span>()
+        .<span class="fn">header</span>(HttpHeaders.CONTENT_DISPOSITION,
+                <span class="st">"attachment; filename=\""</span> + meta.<span class="fn">originalFileName</span>() + <span class="st">"\""</span>)
+        .<span class="fn">contentType</span>(<span class="tp">MediaType</span>.APPLICATION_OCTET_STREAM)
+        .<span class="fn">body</span>(body);
+}</pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label res">결과</div>
+                            <div class="ts-content">
+                                JVM 힙 사용량을 버퍼 크기(수 KB) 수준으로 유지하며 2GB 이상 파일도 안정적으로 다운로드할 수 있게 됐습니다.
+                                컨트롤러·서비스·스트리머 각 책임이 명확히 분리되어 유지보수성도 향상됐습니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:28px">
+                        <div class="ts-num">TROUBLE 04</div>
+                        <div class="ts-title">다운로드 중 이탈 후 재시도 시 파일 손상 버그</div>
+
+                        <div class="ts-block">
+                            <div class="ts-label prob">문제</div>
+                            <div class="ts-content">
+                                사용자가 다운로드 중 화면을 이탈했다가 동일 파일을 다시 다운로드 시도하면
+                                파일을 받지 못하는 현상이 발생했습니다.
+                                임시 파일 생성 시 원본 파일명을 그대로 사용했기 때문에,
+                                이전 다운로드가 중단되어 <strong style="color:#e24b4a">훼손된 임시 파일이 NAS 공유 경로에 남아 있는 상태</strong>에서
+                                동일 파일명으로 새 요청이 들어오면 훼손된 파일을 그대로 사용했습니다.
+                            </div>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label sol">해결방법</div>
+                            <div class="ts-content">
+                                임시 파일 생성 시 파일명을 UUID 난수값으로 변경했습니다.
+                                "선 삭제 후 재생성" 방안도 고려했으나, 삭제 명분이 불명확하고
+                                응답 시간을 늘리는 부작용이 있어 채택하지 않았습니다.
+                                매 요청마다 고유한 임시 파일이 생성되므로 이전 중단 잔여 파일의 영향을 받지 않습니다.
+                            </div>
+                            <pre class="code"><span class="cm">// Before — 원본 파일명 그대로 사용, 중단 잔여 파일과 충돌</span>
+<span class="kw">public</span> <span class="tp">Path</span> <span class="fn">decrypt</span>(<span class="tp">Long</span> fileId) {
+    <span class="tp">FileMetadata</span> meta     = fileService.<span class="fn">findMetadata</span>(fileId);
+    <span class="tp">Path</span>         tempFile = tempDir.<span class="fn">resolve</span>(meta.<span class="fn">originalFileName</span>()); <span class="cm">// 충돌 위험</span>
+    aipClient.<span class="fn">decryptTo</span>(meta.<span class="fn">nasPath</span>(), tempFile);
+    <span class="kw">return</span> tempFile;
+}</pre>
+                            <pre class="code"><span class="cm">// After — UUID 난수값으로 임시 파일명 생성, 요청마다 고유</span>
+<span class="kw">public</span> <span class="tp">Path</span> <span class="fn">decrypt</span>(<span class="tp">Long</span> fileId) {
+    <span class="tp">FileMetadata</span> meta     = fileService.<span class="fn">findMetadata</span>(fileId);
+    <span class="tp">String</span>       tempName = <span class="tp">UUID</span>.<span class="fn">randomUUID</span>() + <span class="st">"_"</span> + meta.<span class="fn">originalFileName</span>();
+    <span class="tp">Path</span>         tempFile = tempDir.<span class="fn">resolve</span>(tempName); <span class="cm">// 매 요청마다 고유한 경로</span>
+    aipClient.<span class="fn">decryptTo</span>(meta.<span class="fn">nasPath</span>(), tempFile);
+    <span class="kw">return</span> tempFile;
+    <span class="cm">// 임시 파일 삭제는 FileDownloadStreamer의 finally 블록에서 처리</span>
+}</pre>
+                        </div>
+
+                        <div class="ts-block">
+                            <div class="ts-label res">결과</div>
+                            <div class="ts-content">
+                                다운로드 중 이탈 후 재시도해도 이전 잔여 파일의 영향을 받지 않아 파일 손상이 완전히 사라졌습니다.
+                                UUID 기반 난수 파일명은 업로드 저장 시 원본 파일명 충돌 방지에도 동일하게 적용된 일관된 설계 원칙입니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="impact-row">
+                        <span class="imp">GB급 대용량 안정 처리</span>
+                        <span class="imp">기밀문서 보안·감사 내재화</span>
+                        <span class="imp">비동기 처리로 UX 개선</span>
+                        <span class="imp">OOM 없는 스트리밍 다운로드</span>
+                        <span class="imp">레거시 마이그레이션 완료</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- P3: Bitbucket AI -->
+            <div class="proj-card">
+                <div class="proj-card-header">
+                    <div class="proj-card-header-left">
+                        <div class="proj-badge-row">
+                            <span class="pbadge pbadge-client">납품 · 실사용중</span>
+                            <span class="pbadge pbadge-solo">1인 프로젝트 · 기여도 100%</span>
+                        </div>
+                        <div class="proj-title">Bitbucket AI Reviewer 플러그인</div>
+                        <div class="proj-period">오픈소스컨설팅 (OSC) &nbsp;|&nbsp; 2025.03 – 2025.05</div>
+                    </div>
+                    <div class="proj-period-badge">Java · JAX-RS · LLM</div>
+                </div>
+                <div class="proj-body">
+                    <div class="proj-overview">
+                        Bitbucket의 PR 생성 이벤트를 트리거로 AI가 자동으로 코드 리뷰를 수행하고, 리뷰 결과를 Task로 자동 등록하는 플러그인. 수동 리뷰의 시간 소모와 리뷰어마다
+                        다른 품질 편차 문제를 해소하기 위해 설계·구현했습니다.
+                    </div>
+                    <div class="stack-row">
+                        <span class="stag p">Java</span>
+                        <span class="stag p">Maven</span>
+                        <span class="stag p">JAX-RS</span>
+                        <span class="stag">MySQL</span>
+                        <span class="stag">H2 Database</span>
+                        <span class="stag">LLM (Gemma2)</span>
+                        <span class="stag">사내 Assistant LLM</span>
+                        <span class="stag">Adapter Pattern</span>
+                        <span class="stag">HTML/CSS/JS</span>
+                        <span class="stag">I18n</span>
+                    </div>
+                    <div class="psi-grid">
+                        <div class="psi-card problem">
+                            <div class="psi-label">Problem</div>
+                            <div class="psi-text">수동 코드 리뷰는 시간이 오래 걸리고, 리뷰어마다 품질 편차 발생. 리뷰 누락으로 인한 품질 저하 우려</div>
+                        </div>
+                        <div class="psi-card solution">
+                            <div class="psi-label">Solution</div>
+                            <div class="psi-text">PR 생성 시 Diff를 파싱해 LLM에 비동기 질의 → 결과를 Bitbucket Task로 자동 등록. Adapter
+                                Pattern으로 LLM 교체 유연성 확보
+                            </div>
+                        </div>
+                        <div class="psi-card impact">
+                            <div class="psi-label">Impact</div>
+                            <div class="psi-text">리뷰 피드백 도달 시간 100% 단축, 리뷰 누락 제거, 사내 2개 팀 도입 및 고객사 납품·실사용 중</div>
+                        </div>
+                    </div>
+                    <div class="contrib-title">주요 기여 내용</div>
+                    <div class="contrib-list">
+                        <div class="contrib-item">
+                            <div class="contrib-num">01</div>
+                            <div class="contrib-content">
+                                <strong>AI 기반 자동 코드 리뷰 파이프라인</strong>
+                                <p>PR 생성 시 Diff 데이터를 파싱하여 비동기적으로 LLM에 요청하고, AI 리뷰 결과를 Bitbucket PR에 Task로 자동 첨부하여 리뷰 품질
+                                    균일화 및 Task 처리 강제화를 구현했습니다.</p>
+                            </div>
+                        </div>
+                        <div class="contrib-item">
+                            <div class="contrib-num">02</div>
+                            <div class="contrib-content">
+                                <strong>Adapter Pattern 기반 LLM 교체 유연성</strong>
+                                <p>다양한 LLM(Gemma2, 사내 Assistant 등)과의 연동 구조를 Adapter로 추상화하여, LLM 교체 시 클라이언트 코드를 수정하지 않아도
+                                    되는 구조를 설계했습니다. 사용자가 Repository별로 직접 모델을 선택할 수 있는 설정 화면도 구현했습니다.</p>
+                            </div>
+                        </div>
+                        <div class="contrib-item">
+                            <div class="contrib-num">03</div>
+                            <div class="contrib-content">
+                                <strong>순수 HTML/CSS/JS 기반 UI 설계 전략</strong>
+                                <p>추후 프론트엔드 기술 교체 가능성을 고려해 Template Engine을 미사용하고 순수 HTML/CSS/JS만으로 UI를 구현했습니다. I18n 처리로
+                                    영어/한국어 다국어 지원(B2B 고객사 대응 목적)도 함께 구현했습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impact-row">
+                        <span class="imp">리뷰 피드백 도달 시간 100% 단축</span>
+                        <span class="imp">리뷰 누락 제거</span>
+                        <span class="imp acc">사내 2팀 도입</span>
+                        <span class="imp acc">고객사 납품</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- P4: GitLab CI/CD -->
+            <div class="proj-card">
+                <div class="proj-card-header">
+                    <div class="proj-card-header-left">
+                        <div class="proj-badge-row">
+                            <span class="pbadge pbadge-solo">1인 프로젝트 · 기여도 100%</span>
+                        </div>
+                        <div class="proj-title">GitLab CI/CD 파이프라인 설계 및 구축</div>
+                        <div class="proj-period">티벨 &nbsp;|&nbsp; 2022.01 – 2022.05</div>
+                    </div>
+                    <div class="proj-period-badge">GitLab CI/CD · Docker · SonarQube</div>
+                </div>
+                <div class="proj-body">
+                    <div class="proj-overview">
+                        개발계/검증계/운영계 3단계 배포 환경에 대한 CI/CD 파이프라인을 전면 설계·구축. 빌드·테스트·코드 취약성 검증·배포를 자동화하여 반복 수작업을 제거하고 개발 생산성을
+                        극대화했습니다.
+                    </div>
+                    <div class="stack-row">
+                        <span class="stag p">GitLab CI/CD</span>
+                        <span class="stag p">Docker</span>
+                        <span class="stag p">SonarQube</span>
+                        <span class="stag p">Jacoco</span>
+                        <span class="stag">Spotless</span>
+                        <span class="stag">JUnit</span>
+                        <span class="stag">Docker Compose</span>
+                        <span class="stag">SCP</span>
+                    </div>
+                    <div class="contrib-list">
+                        <div class="contrib-item">
+                            <div class="contrib-num">01</div>
+                            <div class="contrib-content">
+                                <strong>환경별 파이프라인 분리 (Hidden Job 상속 패턴)</strong>
+                                <p>.develop / .staging / .production Hidden Job을 생성하고 rules-if로 발생 조건을 부여했습니다. 실제 수행할
+                                    Job은 해당 Hidden Job을 상속받아 활성화된 프로필만 수행되도록 분리하여, 환경별 독립적인 배포 파이프라인을 구현했습니다.</p>
+                            </div>
+                        </div>
+                        <div class="contrib-item">
+                            <div class="contrib-num">02</div>
+                            <div class="contrib-content">
+                                <strong>MR 이벤트 시 코드 품질 자동 검증</strong>
+                                <p>Develop으로의 MR 이벤트 시 Spotless(코드 포맷팅) + Jacoco(테스트 커버리지) + SonarQube(정적 분석)를 자동으로 실행하는
+                                    파이프라인을 구축했습니다. 테스트 결과물을 Artifacts로 저장하여 SonarQube에서 코드 취약성을 자동 검사합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impact-row">
+                        <span class="imp">배포 자동화로 개발 생산성 극대화</span>
+                        <span class="imp">코드 품질 자동 검증 체계 수립</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- P5: JQL/CQL + Memblora -->
+            <div class="proj-card">
+                <div class="proj-card-header">
+                    <div class="proj-card-header-left">
+                        <div class="proj-badge-row">
+                            <span class="pbadge pbadge-client">납품 · 실사용중</span>
+                            <span class="pbadge pbadge-team">2인 팀 · 기여도 80%</span>
+                        </div>
+                        <div class="proj-title">오픈소스 LLM 기반 JQL/CQL 자동 생성 플러그인</div>
+                        <div class="proj-period">오픈소스컨설팅 (OSC) &nbsp;|&nbsp; 2024.09 – 2024.11</div>
+                    </div>
+                    <div class="proj-period-badge">Java · Ollama · Gemma2</div>
+                </div>
+                <div class="proj-body">
+                    <div class="proj-overview">
+                        JIRA/Confluence 고급 검색 기능인 JQL/CQL 스크립트를 AI가 자동 생성해주는 플러그인. 자연어로 질의 한 번이면 원하는 검색 쿼리를 생성해 사용자 편의성을
+                        제공합니다.
+                    </div>
+                    <div class="stack-row">
+                        <span class="stag p">Java</span>
+                        <span class="stag p">JAX-RS</span>
+                        <span class="stag p">Ollama</span>
+                        <span class="stag p">Gemma2</span>
+                        <span class="stag">MySQL</span>
+                        <span class="stag">H2</span>
+                        <span class="stag">I18n</span>
+                        <span class="stag">HTML/CSS/JS</span>
+                    </div>
+                    <div class="contrib-list">
+                        <div class="contrib-item">
+                            <div class="contrib-num">01</div>
+                            <div class="contrib-content">
+                                <strong>멀티턴 챗 히스토리 기반 질의 구현</strong>
+                                <p>Ollama + Gemma2 REST API 연동으로 LLM 질의를 구현하고, 기존 질의 흐름에 추가적인 질의가 가능하도록 챗 히스토리 기능을
+                                    구현했습니다. 관리자가 System Prompt와 User Prompt를 언제든 수정할 수 있는 설정 화면도 구현했습니다.</p>
+                            </div>
+                        </div>
+                        <div class="contrib-item">
+                            <div class="contrib-num">02</div>
+                            <div class="contrib-content">
+                                <strong>기존 고급 검색 화면에 커스텀 UI 배치</strong>
+                                <p>Atlassian 플랫폼 특성상 유저 흐름을 깨지 않도록, 기존 제공되는 고급 검색 화면 DOM을 파싱하여 질의 가능한 폼을 배치했습니다. 이를 통해
+                                    사용자가 익숙한 화면에서 자연스럽게 AI 기능을 사용할 수 있게 했습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impact-row">
+                        <span class="imp">연간 $1,850 비용 절감</span>
+                        <span class="imp">JQL 학습 비용 제로화</span>
+                        <span class="imp acc">사내 및 고객사 납품</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- P6: Memblora -->
+            <div class="proj-card">
+                <div class="proj-card-header">
+                    <div class="proj-card-header-left">
+                        <div class="proj-badge-row">
+                            <span class="pbadge pbadge-solo">개인 프로젝트 · 오픈소스</span>
+                        </div>
+                        <div class="proj-title">Memblora — 내 블로그 포스팅 찾아줘!</div>
+                        <div class="proj-period">개인 &nbsp;|&nbsp; <a href="https://github.com/chyoni/memblorallm"
+                                                                     target="_blank">github.com/chyoni/memblorallm ↗</a>
+                            &nbsp;|&nbsp; <a href="https://youtu.be/erSaKxsWA-8" target="_blank">Demo ↗</a></div>
+                    </div>
+                    <div class="proj-period-badge">Python · LangChain · Pinecone</div>
+                </div>
+                <div class="proj-body">
+                    <div class="proj-overview">
+                        400개가 넘는 블로그 포스팅 중 원하는 글을 자연어로 찾을 수 있는 개인 RAG 기반 LLM 앱. Memblora = Memorable + Blog.
+                    </div>
+                    <div class="stack-row">
+                        <span class="stag p">Python</span>
+                        <span class="stag p">LangChain</span>
+                        <span class="stag p">Pinecone</span>
+                        <span class="stag p">Ollama</span>
+                        <span class="stag">Gemma2</span>
+                        <span class="stag">Django</span>
+                        <span class="stag">Streamlit</span>
+                        <span class="stag">RAG</span>
+                        <span class="stag">임베딩</span>
+                    </div>
+                    <div class="contrib-list">
+                        <div class="contrib-item">
+                            <div class="contrib-num">01</div>
+                            <div class="contrib-content">
+                                <strong>LangChain + Pinecone 기반 RAG 파이프라인 구성</strong>
+                                <p>블로그 데이터를 업로드하고 임베딩하는 API, LLM App 질의–응답 API를 구현했습니다. Streamlit으로 챗봇 UI와 파일 업로드 화면을
+                                    구성했습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impact-row">
+                        <span class="imp acc">RAG 파이프라인 직접 구현</span>
+                        <span class="imp acc">400+ 포스팅 인덱싱</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- CAREER TIMELINE -->
+    <section class="section" id="career">
+        <div class="sec-header">
+            <div class="sec-label">Career</div>
+            <h2 class="sec-title">경력</h2>
+            <p class="sec-desc">6년간 두 회사에서 B2B 솔루션 개발과 납품을 경험했습니다.</p>
+        </div>
+        <div class="timeline">
+
+            <div class="tl-item">
+                <div class="tl-dot current"></div>
+                <div class="tl-period">2024.06 — 현재</div>
+                <div class="tl-company">오픈소스컨설팅 <span style="font-size:13px;color:var(--muted);font-weight:400">(LG CNS 자회사)</span>
+                </div>
+                <div class="tl-role">Solution Architect</div>
+                <div class="tl-desc">
+                    Atlassian 플랫폼 기반 플러그인 개발 전문 조직에서 현대자동차, LG CNS 등 대형 고객사 프로젝트를 담당하고 있습니다.
+                    LLM을 활용한 AI 플러그인 개발부터 대용량 파일 관리 시스템 설계까지, 고객의 실제 문제를 해결하는 솔루션을 제로부터 설계·구현·납품합니다.
+                </div>
+                <div class="tl-tags">
+                    <span class="tl-tag g">현재 재직중</span>
+                    <span class="tl-tag">Spring Boot</span>
+                    <span class="tl-tag">LLM / AI 플러그인</span>
+                    <span class="tl-tag">Atlassian Forge</span>
+                    <span class="tl-tag">React</span>
+                    <span class="tl-tag">Monday.com</span>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-period">2022 — 2024.05</div>
+                <div class="tl-company">(주)티벨</div>
+                <div class="tl-role">개발연구소 선임연구원 · 파트장</div>
+                <div class="tl-desc">
+                    개발연구소 파트장으로 팀을 이끌며 JIRA 기반 티켓 동기화 플러그인, 공수율 관리 웹 애플리케이션 등
+                    고객사 맞춤 솔루션을 개발·납품했습니다. GitLab CI/CD 파이프라인을 직접 설계·구축하여
+                    사내 개발 생산성을 높이고, 사내 Jira·Confluence 구축 및 운영 관리자도 겸임했습니다.
+                </div>
+                <div class="tl-tags">
+                    <span class="tl-tag">Spring Boot</span>
+                    <span class="tl-tag">React</span>
+                    <span class="tl-tag">GitLab CI/CD</span>
+                    <span class="tl-tag">Docker</span>
+                    <span class="tl-tag">AWS</span>
+                    <span class="tl-tag">Atlassian 플러그인</span>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-period">2020.01 — 2022</div>
+                <div class="tl-company">(주)티벨</div>
+                <div class="tl-role">개발연구소 연구원</div>
+                <div class="tl-desc">
+                    입사 후 Atlassian 플러그인 개발과 사내 PMS 운영 업무를 담당하며 Jira·Confluence 생태계에 대한
+                    깊은 이해를 쌓았습니다. Java 백엔드 개발과 Spring 기반 웹 애플리케이션 개발 역량을 키웠습니다.
+                </div>
+                <div class="tl-tags">
+                    <span class="tl-tag">Java</span>
+                    <span class="tl-tag">Spring</span>
+                    <span class="tl-tag">Jira Plugin</span>
+                    <span class="tl-tag">Confluence</span>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-dot" style="background:var(--s3);border-color:var(--bdr)"></div>
+                <div class="tl-period">2015 — 2020</div>
+                <div class="tl-company">인하공업전문대학</div>
+                <div class="tl-role">컴퓨터시스템과 (3년제) 졸업</div>
+                <div class="tl-desc">컴퓨터 시스템 전공으로 프로그래밍 기초, 자료구조, 운영체제, 네트워크 등을 학습했습니다.</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BLOG HIGHLIGHTS -->
+    <section class="section" id="blog">
+        <div class="sec-header">
+            <div class="sec-label">Writing</div>
+            <h2 class="sec-title">기술 블로그</h2>
+            <p class="sec-desc">학습하고 부딪힌 것들을 기록합니다. 현재까지 400개 이상의 포스팅을 작성했습니다.</p>
+        </div>
+        <div class="blog-grid">
+
+            <a class="blog-card" href="https://tech.osci.kr/java-annotation-processing/" target="_blank">
+                <div class="blog-cat">Company Tech Blog</div>
+                <div class="blog-title">Java Annotation Processing을 공부하며 알아보는 Lombok의 동작 원리</div>
+                <div class="blog-desc">Java 컴파일 과정에서 Annotation Processor가 어떻게 동작하는지 분석하고, Lombok이 내부적으로 어떤 방식으로 코드를
+                    생성하는지 파헤친 글입니다.
+                </div>
+                <div class="blog-meta">오픈소스컨설팅 테크블로그 · tech.osci.kr</div>
+            </a>
+
+            <a class="blog-card"
+               href="https://velog.io/@chyonees/GC-%EB%A1%9C%EA%B7%B8-%EB%B6%84%EC%84%9D-%EB%B0%8F-JVM-%ED%9E%99-%EC%83%81%ED%83%9C-%EC%B2%B4%ED%81%AC"
+               target="_blank">
+                <div class="blog-cat">Velog · JVM</div>
+                <div class="blog-title">GC 로그 분석 및 JVM 힙 상태 체크</div>
+                <div class="blog-desc">GC 로그를 실제로 읽고 해석하는 방법, JVM 힙 메모리 상태를 모니터링하는 방법을 정리한 글입니다. 현장에서 OOM 이슈를 마주하고 공부하게
+                    된 내용을 담았습니다.
+                </div>
+                <div class="blog-meta">velog.io/@chyonees</div>
+            </a>
+
+            <a class="blog-card"
+               href="https://velog.io/@chyonees/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%84%A4%EA%B3%84-%EB%85%BC%EB%A6%AC%EC%A0%81-%EB%AA%A8%EB%8D%B8%EB%A7%81"
+               target="_blank">
+                <div class="blog-cat">Velog · Database</div>
+                <div class="blog-title">데이터베이스 설계 — 논리적 모델링</div>
+                <div class="blog-desc">개념적 모델링 이후 논리적 모델링 단계에서 엔티티, 속성, 관계를 정규화하는 과정을 정리한 글입니다. 실무에서 DB를 설계할 때 참고하기 위해
+                    작성했습니다.
+                </div>
+                <div class="blog-meta">velog.io/@chyonees</div>
+            </a>
+
+        </div>
+        <div style="margin-top:20px;text-align:center">
+            <a href="https://velog.io/@chyonees" target="_blank" class="btn btn-outline"
+               style="display:inline-flex;align-items:center;gap:6px;padding:10px 22px;font-size:13.5px">
+                전체 포스팅 보기 ↗
+            </a>
+        </div>
+    </section>
+
+
+    <div class="footer-inner">
+        <div class="footer-links">
+            <a href="https://github.com/chyoni" target="_blank">GitHub</a>
+            <a href="https://velog.io/@chyonees" target="_blank">Tech Blog (신)</a>
+            <a href="https://cwchoiit.tistory.com" target="_blank">Tech Blog (구)</a>
+            <a href="mailto:chiwon99881@gmail.com">Email</a>
+        </div>
+        <div class="footer-copy">© 2026 최치원 · Backend Developer</div>
+    </div>
+    </div>
+
+
+</body>
+</html>
